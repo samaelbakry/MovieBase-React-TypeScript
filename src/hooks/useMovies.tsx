@@ -1,10 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovies } from "../services/getMovies";
+import { getMovieDetails,  getMovieTrailer,  getTopRatedMovies, getTrendingMovies } from "../services/getMovies";
 
-export function useMovies(){
+export function useTrendingMovies(){
     const {data} = useQuery({
-        queryKey:["getMovies"],
-        queryFn:getMovies
+        queryKey:["getTrendingMovies"],
+        queryFn:getTrendingMovies
+    })
+    return data
+}
+export function useTopRatedMovies(){
+    const {data} = useQuery({
+        queryKey:["getTopRated"],
+        queryFn:getTopRatedMovies
+    })
+    return data
+}
+
+export function useMovieDetails(id:string){
+    const {data} = useQuery({
+        queryKey:["getMovieDetails"],
+        queryFn:()=>getMovieDetails(id)
+    })
+    return data
+}
+export function useMovieTrailer(id:string){
+    const {data} = useQuery({
+        queryKey:["getMovieDetails"],
+        queryFn:()=>getMovieTrailer(id)
     })
     return data
 }

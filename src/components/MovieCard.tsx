@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import type { MoviesI } from "../interfaces/movies";
 
 const MovieCard = ({ movie }: { movie: MoviesI }) => {
   return (
-    <div className="rounded-2xl overflow-hidden bg-zinc-900 text-white shadow-lg hover:scale-[1.02] transition-all">
+    <Link to={`/movieDetails/${movie.id}`} className="rounded-2xl overflow-hidden bg-zinc-900 text-white shadow-lg hover:scale-[1.02] transition-all">
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
@@ -16,7 +17,7 @@ const MovieCard = ({ movie }: { movie: MoviesI }) => {
           <span>{movie.vote_count} votes</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

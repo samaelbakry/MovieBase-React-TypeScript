@@ -2,7 +2,7 @@ import axios from "axios";
 const API_KEY = "3354828a786f75544afdadc9e18a0677"
 const BASE_URL = "https://api.themoviedb.org/3"
 
-export async function getMovies(){
+export async function getTrendingMovies(){
     try {
         const data = await axios.get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
         
@@ -12,4 +12,34 @@ export async function getMovies(){
         console.log(error);
     }
    
+}
+export async function getTopRatedMovies(){
+    try {
+        const data = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`)
+        
+         return data.data.results
+        
+    } catch (error) {
+        console.log(error);
+    }
+   
+}
+
+export async function getMovieDetails(id:string){
+    try {
+        const data = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
+         return data.data
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+export async function getMovieTrailer(id:string){
+    try {
+        const data = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`)
+         return data.data
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
