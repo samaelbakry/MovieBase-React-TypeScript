@@ -1,4 +1,5 @@
 import Hero from "../components/sections/Hero";
+import People from "../components/sections/People";
 import Series from "../components/sections/Series";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Hero />
       <Series/>
+      <People/>
     </>
   );
 };

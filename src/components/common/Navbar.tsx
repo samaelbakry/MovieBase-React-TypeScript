@@ -13,7 +13,7 @@ const Navbar = () => {
   }
   return (
     <>
-      <nav className="wrapper bg-transparent justify-between my-5">
+      <nav className="absolute top-0 left-0 right-0 z-50 wrapper my-5 bg-transparent py-5 justify-between">
         <Logo />
         <div
           className="md:hidden cursor-pointer transition-all duration-200"

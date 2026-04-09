@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <>
       <section >
-        <HeroCarousel movies={data.slice(0, 5)} />
+        <HeroCarousel movies={data.slice(0, 8)} />
         <Carousel
           plugins={[Autoplay({ delay: 3000 })]}
           className="w-full max-w-7xl mx-auto my-2"
