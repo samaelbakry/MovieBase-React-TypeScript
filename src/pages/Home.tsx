@@ -1,9 +1,13 @@
-import Hero from "../components/hero"
+import Hero from "../components/sections/Hero";
+import Series from "../components/sections/Series";
 
 const Home = () => {
-  return <>
-    <Hero/>
-  </>
-}
+  return (
+    <>
+      <Hero />
+      <Series/>
+    </>
+  );
+};
 
-export default Home
+export default Home;
