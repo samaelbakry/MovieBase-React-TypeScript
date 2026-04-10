@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllMovies, getMovieDetails,  getMovieTrailer,  getSimilarMovie,  getTopRatedMovies, getTrendingMovies } from "../services/getMovies";
+import { getAllMovies, getMovieDetails,  getMovieTrailer,  getSimilarMovie,  getTopRatedMovies, getTrendingMovies, getUpComingMovies } from "../services/getMovies";
+import { getAllTrending } from "../services/getAllTrending";
 
 export function useAllMovies(){
     const {data} = useQuery({
@@ -41,6 +42,20 @@ export function useSimilarMovie(id:string){
     const {data} = useQuery({
         queryKey:["getSimilarMovie" , id],
         queryFn:()=>getSimilarMovie(id)
+    })
+    return data
+}
+export function useAllTrending(){
+    const {data} = useQuery({
+        queryKey:["getAllTrending"],
+        queryFn:getAllTrending
+    })
+    return data
+}
+export function useUpComingMovies(){
+    const {data} = useQuery({
+        queryKey:["getUpComing"],
+        queryFn:getUpComingMovies
     })
     return data
 }

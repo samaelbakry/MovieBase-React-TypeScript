@@ -9,7 +9,14 @@
   .wrapper{
     @apply mx-5 md:mx-auto max-w-6xl flex items-center 
   }
+  .active{
+    @apply bg-linear-to-r from-red-500 via-rose-800 to-orange-600 bg-clip-text text-transparent font-bold 
+  }
+  .active_hover{
+    @apply hover:bg-linear-to-r from-red-500 via-rose-500 to-orange-400 hover:bg-clip-text hover:text-transparent transition duration-500
+  }
 }
+
 @layer utilities {
   body{
     @apply bg-zinc-950 text-white

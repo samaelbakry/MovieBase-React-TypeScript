@@ -62,3 +62,11 @@ export async function getSimilarMovie(id:string){
         console.log(error);
     }
 }
+export async function getUpComingMovies(){
+    try {
+        const data = await axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`)
+         return data.data.results
+    } catch (error) {
+        console.log(error);
+    }
+}

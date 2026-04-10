@@ -9,8 +9,8 @@ const AllMovies = () => {
     <>
       <div className=" px-5 py-12 mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-10">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-wide">
+          <div className="mb-5">
+            <h1 className="text-3xl md:text-4xl font-bold mb-5 border-l-4 border-amber-500 pl-4">
               All Movies
             </h1>
             <p className="text-gray-400 mt-2">

@@ -5,6 +5,7 @@ import MovieDetails from "./pages/MovieDetails";
 import AllMovies from "./pages/AllMovies";
 import SeriesPage from "./pages/SeriesPage";
 import SeriesDetails from "./pages/SeriesDetails";
+import AllTrending from "./pages/AllTrending";
 
 const App = () => {
   const route = createBrowserRouter([
@@ -15,6 +16,7 @@ const App = () => {
 			{path:"movieDetails/:id" , element:<MovieDetails/>},
       {path:"series" , element:<SeriesPage/>},
       {path:"seriesDetails/:id" , element:<SeriesDetails/>},
+      {path:"trending" , element:<AllTrending/>},
 		] },
   ]);
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { useState } from "react";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { IoIosClose, IoIosSearch } from "react-icons/io";
@@ -26,15 +26,15 @@ const Navbar = () => {
 
         <div className="wrapper hidden lg:block">
           <ul className="wrapper gap-10">
-            <Link to={"/movies"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600">
+            <NavLink to={"/movies"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Movies</li>
-            </Link>
-            <Link to={"/series"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600">
+            </NavLink>
+            <NavLink to={"/series"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Series</li>
-            </Link>
-            <Link to={"/trending"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600">
+            </NavLink>
+            <NavLink to={"/trending"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Trending</li>
-            </Link>
+            </NavLink>
           </ul>
         </div>
         <div>
@@ -44,13 +44,13 @@ const Navbar = () => {
       {isOpen && (
         <ul className="md:hidden p-2 bg-transparent flex items-center justify-center gap-4 capitalize font-semibold text-md text-gray-700">
           <li>
-            <Link to="/movies">movies</Link>
+            <NavLink to="/movies" className={"active_hover"}>movies</NavLink>
           </li>
           <li>
-            <Link to="/series">series</Link>
+            <NavLink to="/series" className={"active_hover"}>series</NavLink>
           </li>
           <li>
-            <Link to="/trending">trending</Link>
+            <NavLink to="/trending" className={"active_hover"}>trending</NavLink>
           </li>
         </ul>
       )}
