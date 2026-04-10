@@ -1,4 +1,4 @@
-import { useMovieTrailer } from "../hooks/useMovies";
+import { useMovieTrailer } from "../../hooks/useMovies";
 
 const MovieDetailsTrailer = ({id}:{id:string}) => {
   const movieTrailer = useMovieTrailer(id || "");
@@ -13,7 +13,6 @@ const MovieDetailsTrailer = ({id}:{id:string}) => {
           <h2 className="text-2xl font-bold mb-6 underline underline-offset-8 decoration-red-500">
             Official Trailer
           </h2>
-
           <div className="rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
             <iframe
               width="100%"

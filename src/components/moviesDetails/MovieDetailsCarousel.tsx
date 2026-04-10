@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./ui/carousel";
-import { useSimilarMovie } from "../hooks/useMovies";
+
+import { useSimilarMovie } from "../../hooks/useMovies";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 
 const MovieDetailsCarousel = ({id }: {  id: string;}) => {
 

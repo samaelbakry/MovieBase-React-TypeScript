@@ -1,6 +1,6 @@
 import { usePeople } from "../../hooks/usePeople";
 import type { AllPeopleI } from "../../interfaces/people";
-import Actor from "../Actor";
+import Actor from "../people/Actor";
 import {
   Carousel,
   CarouselContent,

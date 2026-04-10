@@ -1,10 +1,11 @@
 import type { MoviesI } from "../../interfaces/movies";
-import HeroCarousel from "../HeroCarousel";
-import MovieCard from "../MovieCard";
+
 import Autoplay from "embla-carousel-autoplay";
 
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { useTopRatedMovies, useTrendingMovies } from "../../hooks/useMovies";
+import HeroCarousel from "../hero/HeroCarousel";
+import MovieCard from "../hero/MovieCard";
 
 const Hero = () => {
   const trendingMovies = useTrendingMovies();

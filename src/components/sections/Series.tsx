@@ -1,8 +1,8 @@
 import Autoplay from "embla-carousel-autoplay";
 import type { MoviesI } from "../../interfaces/movies"
-import MovieCard from "../MovieCard"
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel"
 import { useSeries } from "../../hooks/useSeries";
+import MovieCard from "../hero/MovieCard";
 
 const Series = () => {
     const series = useSeries();

@@ -1,8 +1,8 @@
 import {  useParams } from "react-router-dom";
 import { useMovieDetails} from "../hooks/useMovies";
-import MovieDetailsCarousel from "../components/MovieDetailsCarousel";
-import MovieDetailsTrailer from "../components/MovieDetailsTrailer";
-import MovieDetailsStats from "../components/MovieDetailsStats";
+import MovieDetailsCarousel from "../components/moviesDetails/MovieDetailsCarousel";
+import MovieDetailsTrailer from "../components/moviesDetails/MovieDetailsTrailer";
+import MovieDetailsStats from "../components/moviesDetails/MovieDetailsStats";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string}>();

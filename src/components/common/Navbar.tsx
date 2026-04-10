@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import Logo from "../Logo";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger,
-} from "../ui/navigation-menu";
 import { useState } from "react";
 import { HiMiniBars3 } from "react-icons/hi2";
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose, IoIosSearch } from "react-icons/io";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -27,34 +25,20 @@ const Navbar = () => {
         </div>
 
         <div className="wrapper hidden lg:block">
-          <NavigationMenu>
-            <NavigationMenuList className="gap-10 capitalize">
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Movies</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink>Action</NavigationMenuLink>
-                  <NavigationMenuLink>Drama</NavigationMenuLink>
-                  <NavigationMenuLink>Romance</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Series</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink>Action</NavigationMenuLink>
-                  <NavigationMenuLink>Drama</NavigationMenuLink>
-                  <NavigationMenuLink>Romance</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Trending</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink>Action</NavigationMenuLink>
-                  <NavigationMenuLink>Drama</NavigationMenuLink>
-                  <NavigationMenuLink>Romance</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <ul className="wrapper gap-10">
+            <Link to={"/movies"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600">
+            <li>Movies</li>
+            </Link>
+            <Link to={"/series"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600">
+            <li>Series</li>
+            </Link>
+            <Link to={"/trending"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600">
+            <li>Trending</li>
+            </Link>
+          </ul>
+        </div>
+        <div>
+          <IoIosSearch  className="text-2xl"/>
         </div>
       </nav>
       {isOpen && (
