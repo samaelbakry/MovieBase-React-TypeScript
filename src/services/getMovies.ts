@@ -24,7 +24,6 @@ export async function getTopRatedMovies(){
     }
    
 }
-
 export async function getMovieDetails(id:string){
     try {
         const data = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
@@ -37,8 +36,16 @@ export async function getMovieDetails(id:string){
 export async function getMovieTrailer(id:string){
     try {
         const data = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`)
-         return data.data
+         return data.data.results
         
+    } catch (error) {
+        console.log(error);
+    }
+}
+export async function getSimilarMovie(id:string){
+    try {
+        const data = await axios.get(`${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}`)
+         return data.data.results
     } catch (error) {
         console.log(error);
     }

@@ -8,16 +8,14 @@ import { useTopRatedMovies, useTrendingMovies } from "../../hooks/useMovies";
 
 const Hero = () => {
   const trendingMovies = useTrendingMovies();
-  if (!trendingMovies) return null;
   console.log(trendingMovies);
   const topRatedMovies = useTopRatedMovies();
-  if (!topRatedMovies) return null;
   console.log(topRatedMovies);
 
   return (
     <>
       <section >
-        <HeroCarousel movies={trendingMovies.slice(0, 8)} />
+        <HeroCarousel movies={trendingMovies?.slice(0, 8)} />
         <Carousel
           plugins={[Autoplay({ delay: 3000 })]}
           className="w-full max-w-7xl mx-auto my-2">
@@ -25,7 +23,7 @@ const Hero = () => {
             trending movies
           </h2>
           <CarouselContent className="-ml-4">
-            {trendingMovies.map((movie: MoviesI) => (
+            {trendingMovies?.map((movie: MoviesI) => (
               <CarouselItem
                 key={movie.id}
                 className="pl-4 basis-full md:basis-1/2 lg:basis-1/3"
@@ -42,7 +40,7 @@ const Hero = () => {
             top rated movies
           </h2>
           <CarouselContent className="-ml-4">
-            {topRatedMovies.map((movie: MoviesI) => (
+            {topRatedMovies?.map((movie: MoviesI) => (
               <CarouselItem
                 key={movie.id}
                 className="pl-4 basis-full md:basis-1/2 lg:basis-1/3"
