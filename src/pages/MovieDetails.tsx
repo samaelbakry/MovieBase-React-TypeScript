@@ -1,20 +1,21 @@
-import {  useParams } from "react-router-dom";
-import { useMovieDetails} from "../hooks/useMovies";
-import MovieDetailsCarousel from "../components/moviesDetails/MovieDetailsCarousel";
+import { useParams } from "react-router-dom";
+import { useMovieDetails } from "../hooks/useMovies";
 import MovieDetailsTrailer from "../components/moviesDetails/MovieDetailsTrailer";
 import MovieDetailsStats from "../components/moviesDetails/MovieDetailsStats";
+import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCarousel";
 
 const MovieDetails = () => {
-  const { id } = useParams<{ id: string}>();
+  const { id } = useParams<{ id: string }>();
 
   const movie = useMovieDetails(id || "");
- 
- 
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white overflow-hidden">
       <section className="relative h-[90vh] w-full overflow-hidden">
-        <img src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`} alt={movie?.title} className="absolute inset-0 w-full h-full object-cover scale-105"
+        <img
+          src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+          alt={movie?.title}
+          className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-black/70 to-black/30" />
         <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/50 to-transparent" />
@@ -53,14 +54,11 @@ const MovieDetails = () => {
         </div>
       </section>
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
-        <MovieDetailsStats movie={movie}/>
+        <MovieDetailsStats movie={movie} />
       </section>
-      <MovieDetailsTrailer  id={id!}/>
+      <MovieDetailsTrailer id={id!} />
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
-        <h2 className="text-2xl font-bold mb-6 underline underline-offset-8 decoration-red-500">
-          Similar Movies
-        </h2>
-       <MovieDetailsCarousel  id={id!}/>
+        <SimilarContentCarousel type="movie" id={id!} />
       </section>
     </div>
   );

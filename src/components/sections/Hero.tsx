@@ -110,7 +110,6 @@ const Hero = () => {
               Top Rated Movies
             </h2>
           </div>
-
           <CarouselContent className="-ml-4">
             {topRatedMovies?.map((movie: MoviesI) => (
               <CarouselItem

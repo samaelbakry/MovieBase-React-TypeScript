@@ -31,12 +31,12 @@ const Series = () => {
           plugins={[Autoplay({ delay: 3500 })]}
           className="w-full">
           <CarouselContent className="-ml-4">
-            {series.map((item: MoviesI) => (
+            {series?.map((item: MoviesI) => (
               <CarouselItem
                 key={item.id}
                 className="pl-4 basis-[80%] sm:basis-1/2 lg:basis-1/3"
               >
-                <MovieCard movie={item} />
+                <MovieCard movie={item} seriesId={item.id} />
               </CarouselItem>
             ))}
           </CarouselContent>

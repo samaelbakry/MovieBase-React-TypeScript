@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import type { MoviesI } from "../../interfaces/movies";
 
-const MovieCard = ({ movie }: { movie: MoviesI }) => {
+const MovieCard = ({ movie , seriesId }: { movie: MoviesI , seriesId?:number }) => {
   return (
     <Link
-      to={`/movieDetails/${movie.id}`}
+      to={seriesId ? `/seriesDetails/${seriesId}`  : `/movieDetails/${movie.id}`}
       className="group relative rounded-2xl overflow-hidden bg-zinc-900 shadow-xl hover:scale-[1.03] transition-all duration-300"
     >
       <img
