@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { MoviesI } from "../interfaces/movies";
+import type { MoviesI } from "../../interfaces/movies";
 
 const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
   const [current, setCurrent] = useState(0);
