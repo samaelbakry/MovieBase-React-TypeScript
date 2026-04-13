@@ -1,12 +1,14 @@
-import type { AllPeopleI } from "../interfaces/people";
+import { Link } from "react-router-dom";
+import type { AllPeopleI } from "../../interfaces/people";
 
 const Actor = ({ actorData }: { actorData: AllPeopleI }) => {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-zinc-900 shadow-lg cursor-pointer">
+    <Link to={`/people/${actorData.id}`} >
+      <div className="group relative overflow-hidden rounded-2xl bg-zinc-900 shadow-lg cursor-pointer p-1">
       <img
         src={`https://image.tmdb.org/t/p/w500${actorData.profile_path}`}
         alt={actorData.name}
-        className="w-full h-64 object-cover transition duration-500 group-hover:scale-110"
+        className="w-full rounded-2xl transition duration-500 group-hover:scale-105"
       />
 
       <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
@@ -25,6 +27,7 @@ const Actor = ({ actorData }: { actorData: AllPeopleI }) => {
         </span>
       </div>
     </div>
+    </Link>
   );
 };
 

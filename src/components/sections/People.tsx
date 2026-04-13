@@ -1,5 +1,6 @@
-import { usePeople } from "../../hooks/usePeople";
+import { useFetch } from "../../hooks/useFetch";
 import type { AllPeopleI } from "../../interfaces/people";
+import { getPeople } from "../../services/getPeople";
 import Actor from "../people/Actor";
 
 import {
@@ -11,7 +12,7 @@ import {
 } from "../ui/carousel";
 
 const People = () => {
-  const allPeople = usePeople();
+  const { data: allPeople } = useFetch({queryKey: ["getPeople"],queryFn: getPeople});
 
   if (!allPeople) {
     return (
@@ -36,7 +37,6 @@ const People = () => {
         </div>
         <div className="relative">
           <Carousel opts={{ align: "start" }} className="w-full">
-
             <CarouselContent className="-ml-4">
               {allPeople.map((actorData: AllPeopleI) => (
                 <CarouselItem

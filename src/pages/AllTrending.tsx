@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
-import { useAllTrending } from "../hooks/useMovies";
+import { useFetch } from "../hooks/useFetch";
+import { getTrendingMovies } from "../services/getMovies";
 
 const AllTrending = () => {
-  const trending = useAllTrending();
+  const { data: trending } = useFetch({
+    queryKey: ["getTrendingMovies"],
+    queryFn: getTrendingMovies,
+  });
 
   if (!trending?.length) {
     return (
@@ -16,13 +20,13 @@ const AllTrending = () => {
     <section className="min-h-screen bg-zinc-950 text-white px-4 md:px-8 py-10 my-20">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
-            <h1 className="text-3xl md:text-4xl font-bold mb-5 border-l-4 border-amber-500 pl-4">
-              Trending now
-            </h1>
-            <p className="text-gray-400 mt-2">
-              Explore the latest movies updated daily
-            </p>
-          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-5 border-l-4 border-amber-500 pl-4">
+            Trending now
+          </h1>
+          <p className="text-gray-400 mt-2">
+            Explore the latest movies updated daily
+          </p>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {trending.map((item: any) => {
             const isMovie = item.media_type === "movie";

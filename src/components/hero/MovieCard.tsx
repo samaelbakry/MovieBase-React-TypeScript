@@ -1,17 +1,10 @@
 import { Link } from "react-router-dom";
 import type { MoviesI } from "../../interfaces/movies";
 
-const MovieCard = ({
-  movie,
-  seriesId,
-}: {
-  movie: MoviesI;
-  seriesId?: number;
-}) => {
+const MovieCard = ({movie,seriesId,}: {movie: MoviesI;seriesId?: number;}) => {
+  
   return (
-    <Link
-      to={seriesId ? `/seriesDetails/${seriesId}` : `/movieDetails/${movie.id}`}
-      >
+    <Link to={seriesId ? `/seriesDetails/${seriesId}` : `/movieDetails/${movie.id}`}>
       <div className="group relative rounded-2xl  overflow-hidden bg-zinc-900 shadow-xl hover:scale-[1.03] hover:shadow hover:shadow-red-600 transition-all duration-300">
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

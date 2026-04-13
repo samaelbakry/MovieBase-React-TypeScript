@@ -7,6 +7,7 @@ import SeriesPage from "./pages/SeriesPage";
 import SeriesDetails from "./pages/SeriesDetails";
 import AllTrending from "./pages/AllTrending";
 import SearchPage from "./pages/SearchPage";
+import PeopleDetails from "./pages/peopleDetails";
 
 const App = () => {
   const route = createBrowserRouter([
@@ -15,10 +16,11 @@ const App = () => {
 			{path:"home" , element:<Home/>},
 			{path:"movies" , element:<AllMovies/>},
 			{path:"movieDetails/:id" , element:<MovieDetails/>},
+      {path:"trending" , element:<AllTrending/>},
       {path:"series" , element:<SeriesPage/>},
       {path:"seriesDetails/:id" , element:<SeriesDetails/>},
+      {path:"people/:id" , element:<PeopleDetails/>},
       {path:"searchPage" , element:<SearchPage/>},
-      {path:"trending" , element:<AllTrending/>},
 		] },
   ]);
 

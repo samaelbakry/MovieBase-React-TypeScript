@@ -1,12 +1,12 @@
 import Autoplay from "embla-carousel-autoplay";
 import type { MoviesI } from "../../interfaces/movies";
-
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { useSeries } from "../../hooks/useSeries";
 import MovieCard from "../hero/MovieCard";
+import { getSeries } from "../../services/getSeries";
+import { useFetch } from "../../hooks/useFetch";
 
 const Series = () => {
-  const series = useSeries();
+   const { data:series } = useFetch({ queryKey: ["getSeries"],queryFn: getSeries });
 
   if (!series) {
     return (

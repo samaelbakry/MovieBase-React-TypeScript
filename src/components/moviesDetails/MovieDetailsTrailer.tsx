@@ -1,7 +1,8 @@
-import { useMovieTrailer } from "../../hooks/useMovies";
+import { useFetch } from "../../hooks/useFetch";
+import { getMovieTrailer } from "../../services/getMovies";
 
-const MovieDetailsTrailer = ({id}:{id:string}) => {
-  const movieTrailer = useMovieTrailer(id || "");
+const MovieDetailsTrailer = ({ id }: { id: string }) => {
+  const { data: movieTrailer } = useFetch({ queryKey: ["getMovieTrailer", id], queryFn: () => getMovieTrailer(id),});
 
   const trailer = movieTrailer?.find(
     (video: any) => video.type === "Trailer" && video.site === "YouTube",

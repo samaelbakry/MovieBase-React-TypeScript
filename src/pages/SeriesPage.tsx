@@ -1,9 +1,10 @@
 import MovieCard from "../components/hero/MovieCard";
-import { useSeries } from "../hooks/useSeries";
+import { useFetch } from "../hooks/useFetch";
 import type { MoviesI } from "../interfaces/movies";
+import { getSeries } from "../services/getSeries";
 
 const SeriesPage = () => {
-  const series = useSeries();
+  const { data: series } = useFetch({ queryKey: ["getSeries"], queryFn:getSeries,});
   return (
     <>
       <div className=" px-5 py-12 mt-20">

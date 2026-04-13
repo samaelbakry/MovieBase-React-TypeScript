@@ -1,9 +1,10 @@
 import MovieCard from "../components/hero/MovieCard";
-import { useAllMovies } from "../hooks/useMovies";
+import { useFetch } from "../hooks/useFetch";
 import type { MoviesI } from "../interfaces/movies";
+import { getAllMovies } from "../services/getMovies";
 
 const AllMovies = () => {
-  const allMovies = useAllMovies();
+  const { data: allMovies } = useFetch({queryKey: ["getAllMovies"],queryFn: getAllMovies});
 
   return (
     <>

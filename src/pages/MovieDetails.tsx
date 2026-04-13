@@ -1,13 +1,17 @@
 import { useParams } from "react-router-dom";
-import { useMovieDetails } from "../hooks/useMovies";
+import { useFetch } from "../hooks/useFetch";
 import MovieDetailsTrailer from "../components/moviesDetails/MovieDetailsTrailer";
 import MovieDetailsStats from "../components/moviesDetails/MovieDetailsStats";
 import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCarousel";
+import { getMovieDetails } from "../services/getMovies";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
 
-  const movie = useMovieDetails(id || "");
+  const { data: movie } = useFetch({
+    queryKey: ["getMovieDetails", id],
+    queryFn: () => getMovieDetails(id as string),
+  });
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white overflow-hidden">
