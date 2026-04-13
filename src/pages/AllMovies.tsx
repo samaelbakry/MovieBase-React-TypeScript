@@ -1,10 +1,14 @@
+import LoadingScreen from "../components/common/LoadingScreen";
 import MovieCard from "../components/hero/MovieCard";
 import { useFetch } from "../hooks/useFetch";
 import type { MoviesI } from "../interfaces/movies";
 import { getAllMovies } from "../services/getMovies";
 
 const AllMovies = () => {
-  const { data: allMovies } = useFetch({queryKey: ["getAllMovies"],queryFn: getAllMovies});
+  const { data: allMovies, isLoading } = useFetch({
+    queryKey: ["getAllMovies"],
+    queryFn: getAllMovies,
+  });
 
   return (
     <>
@@ -18,11 +22,17 @@ const AllMovies = () => {
               Explore the latest movies updated daily
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {allMovies?.map((movie: MoviesI) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
+          {isLoading ? (
+            <LoadingScreen />
+          ) : (
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                {allMovies?.map((movie: MoviesI) => (
+                  <MovieCard key={movie.id} movie={movie} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

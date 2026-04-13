@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { getTrendingMovies } from "../services/getMovies";
+import LoadingScreen from "../components/common/LoadingScreen";
 
 const AllTrending = () => {
-  const { data: trending } = useFetch({
+  const { data: trending , isLoading } = useFetch({
     queryKey: ["getTrendingMovies"],
     queryFn: getTrendingMovies,
   });
 
-  if (!trending?.length) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-white">
-        Loading Trending Content...
-      </div>
-    );
-  }
 
   return (
     <section className="min-h-screen bg-zinc-950 text-white px-4 md:px-8 py-10 my-20">
@@ -27,6 +21,7 @@ const AllTrending = () => {
             Explore the latest movies updated daily
           </p>
         </div>
+        {isLoading ? <LoadingScreen/> : <>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {trending.map((item: any) => {
             const isMovie = item.media_type === "movie";
@@ -72,6 +67,7 @@ const AllTrending = () => {
             );
           })}
         </div>
+        </>}
       </div>
     </section>
   );

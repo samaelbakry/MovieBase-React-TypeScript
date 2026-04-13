@@ -7,9 +7,10 @@ import HeroCarousel from "../hero/HeroCarousel";
 import MovieCard from "../hero/MovieCard";
 import UpcomingMovies from "../hero/UpcomingMovies";
 import { getTopRatedMovies, getTrendingMovies } from "../../services/getMovies";
+import LoadingScreen from "../common/LoadingScreen";
 
 const Hero = () => {
-  const { data: trendingMovies } = useFetch({
+  const { data: trendingMovies , isLoading } = useFetch({
     queryKey: ["getTrendingMovies"],
     queryFn: getTrendingMovies,
   });
@@ -21,7 +22,8 @@ const Hero = () => {
   return (
     <section className="bg-zinc-950 text-white pb-20">
       <HeroCarousel movies={trendingMovies?.slice(0, 8)} />
-      <UpcomingMovies />
+      {isLoading ? <LoadingScreen/> : <>
+        <UpcomingMovies />
       <div className="max-w-7xl mx-auto mt-14 px-4 md:px-6">
         <Carousel plugins={[Autoplay({ delay: 3500 })]} className="w-full">
           <div className="mb-8">
@@ -42,7 +44,6 @@ const Hero = () => {
           </CarouselContent>
         </Carousel>
       </div>
-
       <div className="max-w-7xl mx-auto mt-20 px-4 md:px-6">
         <Carousel plugins={[Autoplay({ delay: 4000 })]} className="w-full">
           <div className="mb-8">
@@ -50,7 +51,6 @@ const Hero = () => {
               Top Rated Movies
             </h2>
           </div>
-
           <CarouselContent className="-ml-4">
             {topRatedMovies?.map((movie: MoviesI) => (
               <CarouselItem
@@ -63,6 +63,8 @@ const Hero = () => {
           </CarouselContent>
         </Carousel>
       </div>
+      </>}
+    
     </section>
   );
 };

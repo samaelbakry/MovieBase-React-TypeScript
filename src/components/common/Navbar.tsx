@@ -5,7 +5,7 @@ import SearchInput from "../searchBar/SearchInput";
 const Navbar = () => {
   return (
     <>
-      <nav className="absolute top-0 left-0 right-0 z-50 wrapper my-5 bg-transparent py-5 justify-between">
+      <nav className="absolute top-0 left-0 right-0 z-50 wrapper mb-50 bg-transparent py-5 justify-between">
         <Logo />
         <div className="wrapper hidden lg:block">
           <ul className="wrapper gap-10">

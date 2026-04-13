@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCarousel";
 import { useFetch } from "../hooks/useFetch";
 import { getSeriesDetails, getSeriesTrailer } from "../services/getSeries";
+import LoadingScreen from "../components/common/LoadingScreen";
 
 const SeriesDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,13 +16,7 @@ const SeriesDetails = () => {
         video.site === "YouTube"
     ) || [];
 
-  if (!details) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-gray-400">
-        Loading series details...
-      </div>
-    );
-  }
+  if (!details) return <LoadingScreen/>
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">

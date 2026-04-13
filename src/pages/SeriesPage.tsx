@@ -1,10 +1,11 @@
+import LoadingScreen from "../components/common/LoadingScreen";
 import MovieCard from "../components/hero/MovieCard";
 import { useFetch } from "../hooks/useFetch";
 import type { MoviesI } from "../interfaces/movies";
 import { getSeries } from "../services/getSeries";
 
 const SeriesPage = () => {
-  const { data: series } = useFetch({ queryKey: ["getSeries"], queryFn:getSeries,});
+  const { data: series , isLoading } = useFetch({ queryKey: ["getSeries"], queryFn:getSeries,});
   return (
     <>
       <div className=" px-5 py-12 mt-20">
@@ -18,7 +19,8 @@ const SeriesPage = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {series?.map((item: MoviesI) => (
+            {isLoading ? <LoadingScreen/> : <>
+             {series?.map((item: MoviesI) => (
               <div
                 key={item.id}
                 className="pl-4 basis-[80%] sm:basis-1/2 lg:basis-1/3"
@@ -26,6 +28,8 @@ const SeriesPage = () => {
                 <MovieCard movie={item} seriesId={item.id} />
               </div>
             ))}
+            </>}
+           
           </div>
         </div>
       </div>

@@ -4,17 +4,13 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import MovieCard from "../hero/MovieCard";
 import { getSeries } from "../../services/getSeries";
 import { useFetch } from "../../hooks/useFetch";
+import LoadingScreen from "../common/LoadingScreen";
 
 const Series = () => {
    const { data:series } = useFetch({ queryKey: ["getSeries"],queryFn: getSeries });
 
-  if (!series) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center text-gray-400">
-        Loading series...
-      </div>
-    );
-  }
+  if (!series)  return <LoadingScreen/>
+
 
   return (
     <section className="bg-zinc-950 text-white py-12">

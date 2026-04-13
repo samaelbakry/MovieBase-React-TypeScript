@@ -24,7 +24,7 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         alt={movie.title}
         className="absolute inset-0 w-full h-full object-cover"
-      />
+        />
       <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/40 to-transparent" />
       <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
       <div className="relative z-10 h-full flex items-end px-10 pb-16">

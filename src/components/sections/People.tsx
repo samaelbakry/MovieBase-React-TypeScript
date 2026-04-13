@@ -1,6 +1,7 @@
 import { useFetch } from "../../hooks/useFetch";
 import type { AllPeopleI } from "../../interfaces/people";
 import { getPeople } from "../../services/getPeople";
+import LoadingScreen from "../common/LoadingScreen";
 import Actor from "../people/Actor";
 
 import {
@@ -14,13 +15,7 @@ import {
 const People = () => {
   const { data: allPeople } = useFetch({queryKey: ["getPeople"],queryFn: getPeople});
 
-  if (!allPeople) {
-    return (
-      <div className="min-h-[40vh] flex items-center justify-center text-gray-400">
-        Loading actors...
-      </div>
-    );
-  }
+  if (!allPeople) return <LoadingScreen/>
 
   return (
     <section className="bg-zinc-950 text-white py-14">

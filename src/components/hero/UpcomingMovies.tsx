@@ -3,8 +3,7 @@ import type { MoviesI } from "../../interfaces/movies";
 import { getUpComingMovies } from "../../services/getMovies";
 
 const UpcomingMovies = () => {
-  const { data: upComingMovies, isLoading } = useFetch({queryKey: ["getUpComing"],queryFn: getUpComingMovies});
-  if (isLoading) return <div>Loading...</div>;
+  const { data: upComingMovies } = useFetch({queryKey: ["getUpComing"],queryFn: getUpComingMovies});
   return (
     <>
       <div className="max-w-7xl mx-auto mt-20 px-4 md:px-6">
