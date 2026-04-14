@@ -1,6 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 import { getSearch } from "../../services/getSearchedMovies";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
@@ -11,13 +11,19 @@ const SearchInput = () => {
   function focus() {
     searchInput.current?.focus();
   }
-  async function handleSearch() {
-    if (!searchValue.trim() || !type) return;
-    const results = await getSearch(searchValue, type);
-    setSearchValue("")
+  async function handleSearch(value:string) {
+    if (!value.trim() || !type) return;
+    const results = await getSearch(value, type);
     navigate("/searchPage" , {state:{results , query:searchValue , type}})
-    console.log(results);
   }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleSearch(searchValue)
+    }, 300);
+  
+    return () => clearTimeout(timer)
+  }, [searchValue , type])
+  
   return (
     <>
       <div className="flex items-center gap-3 bg-zinc-900 p-3 rounded-2xl shadow-md w-fit">
@@ -34,14 +40,14 @@ const SearchInput = () => {
           ref={searchInput}
           placeholder="Search..."
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+          onChange={(e) => {setSearchValue(e.target.value)}}
           className="bg-transparent text-white outline-none px-2"
         />
         <button
           onClick={() => {
             focus();
-            handleSearch();
+            handleSearch(searchValue);
+            setSearchValue("")
           }}
           className="bg-red-600 hover:bg-red-700 p-2 rounded-full transition cursor-pointer"
         >
