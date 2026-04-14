@@ -1,7 +1,6 @@
 import type { MoviesI } from "../../interfaces/movies";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-
 import { useFetch } from "../../hooks/useFetch";
 import HeroCarousel from "../hero/HeroCarousel";
 import MovieCard from "../hero/MovieCard";
