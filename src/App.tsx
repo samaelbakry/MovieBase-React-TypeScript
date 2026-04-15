@@ -1,8 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
-import { lazy, Suspense, useContext, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import LoadingScreen from "./components/common/LoadingScreen";
-import { SessionContext } from "./context/SessionTokenContext";
 const Home = lazy(() => import("./pages/Home"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const AllMovies = lazy(() => import("./pages/AllMovies"));
@@ -20,7 +19,7 @@ const withSuspense = (Component: any) => (
 );
 
 const App = () => {
-  const session = useContext(SessionContext)
+
   const route = createBrowserRouter([
     { path: "", element: <MainLayout />, 
 		children: [{index:true, element: <Navigate to={"/home"} />},
@@ -36,9 +35,9 @@ const App = () => {
 		] },
   ]);
 
-  useEffect(() => {
-  session?.createRequestToken();
-}, []);
+//   useEffect(() => {
+//   session?.createRequestToken();
+// }, []);
 
   return (
     <>

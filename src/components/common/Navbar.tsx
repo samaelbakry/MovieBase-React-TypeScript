@@ -2,6 +2,7 @@ import {  NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import SearchInput from "../searchBar/SearchInput";
 import { useEffect, useState } from "react";
+import MiniNav from "../miniNav/MiniNav";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -34,6 +35,7 @@ const Navbar = () => {
         </div>
         <SearchInput/>
       </nav>
+      <MiniNav/>
     </>
   );
 };

@@ -11,7 +11,7 @@ const Home = () => {
       <Suspense fallback={<LoadingScreen />}>
         <Hero />
       </Suspense>
-
+      
       <Suspense fallback={<LoadingScreen />}>
         <Series />
       </Suspense>

@@ -41,9 +41,6 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer">
               Add to watchlist
             </button>
-            <button className="bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-3 rounded-lg cursor-pointer">
-              Add to favorite
-            </button>
             </> : <Link to={"/login"}>
             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer">
               login Now

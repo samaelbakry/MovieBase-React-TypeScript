@@ -59,8 +59,7 @@ const Hero = () => {
           </CarouselContent>
         </Carousel>
       </div>
-      </>}
-    
+      </>}    
     </section>
   );
 };

@@ -59,9 +59,9 @@ const LoginPage = () => {
       return;
     }
     console.log("LOGIN SUCCESS:", sessionId);
-    toast("LOGIN SUCCESS session will expire after 1 hour" , {position:"top-right"})
+    toast("Session will expire after 1 hour")
     setTimeout(() => {
-      navigate("/")
+      navigate("/home")
     }, 1000);
     
   } catch (error) {
@@ -69,6 +69,7 @@ const LoginPage = () => {
   } finally {
     setLoading(false);
   }
+
 };
 
   return (

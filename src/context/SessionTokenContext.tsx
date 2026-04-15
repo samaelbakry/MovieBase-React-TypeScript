@@ -26,7 +26,9 @@ export const SessionContext =
 
 export function SessionContextProvider({ children }: { children: React.ReactNode }) {
   const [requestToken, setRequestToken] = useState<string | null>(null);
-  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string | null>(()=>{
+    return localStorage.getItem("session_id")
+  });
   const [accountId, setAccountId] = useState<number | null>(null);
   const [loading , setLoading] = useState(false);
 
@@ -84,8 +86,7 @@ export function SessionContextProvider({ children }: { children: React.ReactNode
       try {
         setLoading(true);
 
-        const res = await axios.get(
-          `${BASE_URL}/account`,
+        const res = await axios.get(`${BASE_URL}/account`,
           {
             params: {
               api_key: API_KEY,

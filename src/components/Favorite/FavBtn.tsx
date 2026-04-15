@@ -3,6 +3,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { SessionContext } from "../../context/SessionTokenContext";
 import { addToFav } from "../../services/favoriteServices";
 import type { MoviesI } from "../../interfaces/movies";
+import { toast } from "sonner";
 
 const FavBtn = ({movie}:{movie:MoviesI}) => {
 
@@ -13,15 +14,13 @@ const FavBtn = ({movie}:{movie:MoviesI}) => {
 
   async function handleFav() {
     if (!sessionId || !accountId) return;
-
     const data = await addToFav(accountId,sessionId,movie.id, "movie" );
-
-    console.log("Favorite response:", data);
+    if (data.status_message ) return toast("Added ❤️")
   }
   
   return <>
     <button
-    onClick={()=>{handleFav}}
+    onClick={handleFav}
       className="flex items-center gap-2 px-4 py-2 rounded-xl 
       bg-white/10 backdrop-blur-lg border border-white/20
       text-white hover:border-red-500
