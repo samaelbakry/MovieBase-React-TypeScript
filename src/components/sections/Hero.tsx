@@ -19,7 +19,7 @@ const Hero = () => {
   });
 
   return (
-    <section className="bg-zinc-950 text-white pb-20">
+    <section className="text-white">
       <HeroCarousel movies={trendingMovies?.slice(0, 8)} />
       {isLoading ? <LoadingScreen/> : <>
         <UpcomingMovies />
@@ -30,13 +30,10 @@ const Hero = () => {
               Trending Movies
             </h2>
           </div>
-
           <CarouselContent className="-ml-4">
             {trendingMovies?.map((movie: MoviesI) => (
               <CarouselItem
-                key={movie.id}
-                className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-              >
+                key={movie.id} className="p-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                 <MovieCard movie={movie} />
               </CarouselItem>
             ))}
@@ -54,7 +51,7 @@ const Hero = () => {
             {topRatedMovies?.map((movie: MoviesI) => (
               <CarouselItem
                 key={movie.id}
-                className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="p-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
                 <MovieCard movie={movie} />
               </CarouselItem>

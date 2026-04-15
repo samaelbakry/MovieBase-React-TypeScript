@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
 import type { MoviesI } from "../../interfaces/movies";
-import AddToFavBtn from "../Favorite/AddToFavBtn";
 import WatchListBtn from "../watchList/WatchListBtn";
+import FavBtn from "../Favorite/FavBtn";
+import { useContext } from "react";
+import { SessionContext } from "../../context/SessionTokenContext";
 
 const MovieCard = ({ movie, seriesId,}: {  movie: MoviesI;  seriesId?: number}) => {
+  const session = useContext(SessionContext)
   return (
-    <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-[1.03] hover:shadow hover:shadow-red-600 transition-all duration-300">
-     <div
-        className="absolute top-2 left-2 z-20 flex  gap-2 
-        opacity-0 group-hover:opacity-100 transition duration-300 my-3"
+    <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow hover:shadow-red-600 transition-all duration-300">
+      {session?.sessionId && <>
+      <div className="absolute top-2 left-2 z-20 flex  gap-2 opacity-0 group-hover:opacity-100 transition duration-300 my-3"
         onClick={(e) => e.stopPropagation()}
       >
-        <AddToFavBtn />
+        <FavBtn movie={movie} />
         <WatchListBtn />
       </div>
+      </>}
+     
       <Link
         to={
           seriesId

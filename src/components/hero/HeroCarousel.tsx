@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { MoviesI } from "../../interfaces/movies";
+import { Link } from "react-router-dom";
+import { SessionContext } from "../../context/SessionTokenContext";
 
 const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
+  const session = useContext(SessionContext)
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -34,13 +37,22 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
           <p className="text-zinc-300 line-clamp-3 mb-6">{movie.overview}</p>
 
           <div className="flex gap-4">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold">
-              Watch Now
+            {session?.sessionId ?<>
+             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer">
+              Add to watchlist
             </button>
+            <button className="bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-3 rounded-lg cursor-pointer">
+              Add to favorite
+            </button>
+            </> : <Link to={"/login"}>
+            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer">
+              login Now
+            </button>
+           </Link>
+           }
+           
 
-            <button className="bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-3 rounded-lg">
-              Add to List
-            </button>
+           
           </div>
         </div>
       </div>

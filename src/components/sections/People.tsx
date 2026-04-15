@@ -36,7 +36,7 @@ const People = () => {
               {allPeople.map((actorData: AllPeopleI) => (
                 <CarouselItem
                   key={actorData.id}
-                  className="pl-4 basis-[60%] sm:basis-1/3 md:basis-1/4 lg:basis-1/6"
+                  className="p-4 basis-[60%] sm:basis-1/3 md:basis-1/4 lg:basis-1/6"
                 >
                   <Actor actorData={actorData} />
                 </CarouselItem>

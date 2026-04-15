@@ -30,7 +30,7 @@ const Series = () => {
             {series?.map((item: MoviesI) => (
               <CarouselItem
                 key={item.id}
-                className="pl-4 basis-[80%] sm:basis-1/2 lg:basis-1/3"
+                className="p-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
                 <MovieCard movie={item} seriesId={item.id} />
               </CarouselItem>

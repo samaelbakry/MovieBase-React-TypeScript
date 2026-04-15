@@ -1,9 +1,10 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useContext, useEffect } from "react";
 import LoadingScreen from "./components/common/LoadingScreen";
-
+import { SessionContext } from "./context/SessionTokenContext";
 const Home = lazy(() => import("./pages/Home"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
 const AllMovies = lazy(() => import("./pages/AllMovies"));
 const MovieDetails = lazy(() => import("./pages/MovieDetails"));
 const AllTrending = lazy(() => import("./pages/AllTrending"));
@@ -19,10 +20,12 @@ const withSuspense = (Component: any) => (
 );
 
 const App = () => {
+  const session = useContext(SessionContext)
   const route = createBrowserRouter([
     { path: "", element: <MainLayout />, 
 		children: [{index:true, element: <Navigate to={"/home"} />},
         { path: "home", element: withSuspense(Home) },
+        { path: "login", element: withSuspense(LoginPage) },
         { path: "movies", element: withSuspense(AllMovies) },
         { path: "movieDetails/:id", element: withSuspense(MovieDetails) },
         { path: "trending", element: withSuspense(AllTrending) },
@@ -32,6 +35,10 @@ const App = () => {
         { path: "searchPage", element: withSuspense(SearchPage) },
 		] },
   ]);
+
+  useEffect(() => {
+  session?.createRequestToken();
+}, []);
 
   return (
     <>
