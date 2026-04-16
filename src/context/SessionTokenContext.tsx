@@ -69,42 +69,38 @@ export function SessionContextProvider({ children }: { children: React.ReactNode
       );
 
       const session = res.data.session_id;
-
       setSessionId(session);
       localStorage.setItem("session_id", session);
-
       return session;
     } catch (error) {
       console.log(error);
       return null;
     }
   }
-   useEffect(() => {
-    if (!sessionId) return;
+useEffect(() => {
+  if (!sessionId) return;
+  const fetchAccount = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${BASE_URL}/account`, {
+        params: {
+          api_key: API_KEY,
+          session_id: sessionId,
+        },
+      });
+      setAccountId(res.data.id); 
+    } catch (err) {
+      console.log("Failed to fetch account:", err);
+      setSessionId(null);
+      setAccountId(null);
+      localStorage.removeItem("session_id");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const fetchAccount = async () => {
-      try {
-        setLoading(true);
-
-        const res = await axios.get(`${BASE_URL}/account`,
-          {
-            params: {
-              api_key: API_KEY,
-              session_id: sessionId,
-            },
-          }
-        );
-
-        setAccountId(res.data.id);
-      } catch (err) {
-        console.log("Failed to fetch account:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAccount();
-  }, [sessionId]);
+  fetchAccount();
+}, [sessionId]);
 
   return (
     <SessionContext.Provider

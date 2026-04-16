@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import { lazy, Suspense } from "react";
+
 import LoadingScreen from "./components/common/LoadingScreen";
 const Home = lazy(() => import("./pages/Home"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -10,6 +11,7 @@ const AllTrending = lazy(() => import("./pages/AllTrending"));
 const SeriesPage = lazy(() => import("./pages/SeriesPage"));
 const SeriesDetails = lazy(() => import("./pages/SeriesDetails"));
 const PeopleDetails = lazy(() => import("./pages/PeopleDetails"));
+const FavoriteListPage = lazy(() => import("./pages/FavoriteListPage"));
 const SearchPage = lazy(() => import("./pages/SearchPage"))
 
 const withSuspense = (Component: any) => (
@@ -31,6 +33,7 @@ const App = () => {
         { path: "series", element: withSuspense(SeriesPage) },
         { path: "seriesDetails/:id", element: withSuspense(SeriesDetails) },
         { path: "people/:id", element: withSuspense(PeopleDetails) },
+        { path: "favoriteListPage", element: withSuspense(FavoriteListPage) },
         { path: "searchPage", element: withSuspense(SearchPage) },
 		] },
   ]);
