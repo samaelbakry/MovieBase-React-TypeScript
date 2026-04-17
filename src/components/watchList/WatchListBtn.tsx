@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { SessionContext } from "../../context/SessionTokenContext";
 import type { MoviesI } from "../../interfaces/movies";
-import { addToWatchList } from "../../services/watchListService";
 import { toast } from "sonner";
+import { addToWatchList } from "../../services/watchListService";
 
 const WatchListBtn = ({
   movie,
