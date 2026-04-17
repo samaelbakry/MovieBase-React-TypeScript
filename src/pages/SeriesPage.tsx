@@ -21,10 +21,7 @@ const SeriesPage = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {isLoading ? <LoadingScreen/> : <>
              {series?.map((item: MoviesI) => (
-              <div
-                key={item.id}
-                className="pl-4 basis-[80%] sm:basis-1/2 lg:basis-1/3"
-              >
+              <div key={item.id} className="pl-4 basis-[80%] sm:basis-1/2 lg:basis-1/3" >
                 <MovieCard movie={item} seriesId={item.id} />
               </div>
             ))}

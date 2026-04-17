@@ -5,6 +5,7 @@ import { SessionContext } from "../../context/SessionTokenContext";
 
 const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
   const session = useContext(SessionContext)
+  const isAuthorized = session?.accountId && session.sessionId;
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -33,11 +34,9 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
       <div className="relative z-10 h-full flex items-end px-10 pb-16">
         <div className="max-w-xl">
           <h1 className="text-5xl font-bold text-white mb-4">{movie.title}</h1>
-
           <p className="text-zinc-300 line-clamp-3 mb-6">{movie.overview}</p>
-
           <div className="flex gap-4">
-            {session?.sessionId ?<>
+            {isAuthorized ?<>
              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer">
               Add to watchlist
             </button>
@@ -47,9 +46,6 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
             </button>
            </Link>
            }
-           
-
-           
           </div>
         </div>
       </div>

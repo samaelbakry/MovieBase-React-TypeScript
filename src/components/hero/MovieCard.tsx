@@ -4,8 +4,9 @@ import WatchListBtn from "../watchList/WatchListBtn";
 import FavBtn from "../Favorite/FavBtn";
 import { useContext } from "react";
 import { SessionContext } from "../../context/SessionTokenContext";
+import fallBack from "../../assets/Not available.jpg";
 
-const MovieCard = ({ movie, seriesId,}: {  movie: MoviesI;  seriesId?: number}) => {
+const MovieCard = ({ movie, seriesId,mediaType}: {  movie: MoviesI;  seriesId?: number, mediaType?: "movie" | "tv";}) => {
   const session = useContext(SessionContext)
   return (
     <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow hover:shadow-red-600 transition-all duration-300">
@@ -18,15 +19,10 @@ const MovieCard = ({ movie, seriesId,}: {  movie: MoviesI;  seriesId?: number}) 
       </div>
       </>}
      
-      <Link
-        to={
-          seriesId
-            ? `/seriesDetails/${seriesId}`
-            : `/movieDetails/${movie.id}`
-        }
+      <Link to={mediaType === "tv"? `/seriesDetails/${seriesId}` : `/movieDetails/${movie.id}`}
       >
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={movie.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : fallBack}
           alt={movie.title}
           className="w-full object-center group-hover:brightness-50 transition duration-300"
         />

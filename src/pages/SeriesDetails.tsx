@@ -3,6 +3,8 @@ import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCa
 import { useFetch } from "../hooks/useFetch";
 import { getSeriesDetails, getSeriesTrailer } from "../services/getSeries";
 import LoadingScreen from "../components/common/LoadingScreen";
+import fallBack from "../assets/Not available.jpg";
+
 
 const SeriesDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,8 +23,8 @@ const SeriesDetails = () => {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <div className="relative w-full h-[70vh]">
-        <img
-          src={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
+        <img 
+          src={details.backdrop_path? `https://image.tmdb.org/t/p/original${details.backdrop_path}` : fallBack}
           className="w-full h-full object-cover"
         />
 

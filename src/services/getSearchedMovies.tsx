@@ -9,5 +9,4 @@ export async function getSearch(keyword:string , type:string){
     } catch (error) {
         console.log(error);
     }
-   
 }

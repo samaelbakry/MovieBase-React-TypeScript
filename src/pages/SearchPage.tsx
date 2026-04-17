@@ -9,6 +9,8 @@ const SearchPage = () => {
     query: "",
     type: "",
   };
+  console.log(results);
+  
   return (
     <>
       <div className=" px-5 py-12 mt-20">
@@ -20,7 +22,7 @@ const SearchPage = () => {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {results?.map((movie: MoviesI) => (
-              <MovieCard key={movie.id} movie={movie} />
+              <MovieCard key={movie.id} movie={movie} seriesId={type === "tv" ? movie.id : undefined} mediaType={type =="tv" ? "tv" : "movie"}/>
             ))}
           </div>
         </div>
