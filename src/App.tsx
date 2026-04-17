@@ -12,6 +12,7 @@ const SeriesPage = lazy(() => import("./pages/SeriesPage"));
 const SeriesDetails = lazy(() => import("./pages/SeriesDetails"));
 const PeopleDetails = lazy(() => import("./pages/PeopleDetails"));
 const FavoriteListPage = lazy(() => import("./pages/FavoriteListPage"));
+const WatchListPage = lazy(() => import("./pages/WatchListPage"));
 const SearchPage = lazy(() => import("./pages/SearchPage"))
 
 const withSuspense = (Component: any) => (
@@ -35,6 +36,7 @@ const App = () => {
         { path: "people/:id", element: withSuspense(PeopleDetails) },
         { path: "favoriteListPage", element: withSuspense(FavoriteListPage) },
         { path: "searchPage", element: withSuspense(SearchPage) },
+        { path: "watchListPage", element: withSuspense(WatchListPage) },
 		] },
   ]);
 

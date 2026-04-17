@@ -35,10 +35,10 @@ const MiniNav = () => {
               <MdFavorite className="text-2xl group-hover:scale-110 transition" />
               <span className="text-xs mt-1 opacity-80">Fav</span>
             </Link>
-            <button className="cursor-pointer flex flex-col items-center text-gray-300 hover:text-blue-400 transition-all duration-200 group">
+            <Link to={"/watchListPage"} className="cursor-pointer flex flex-col items-center text-gray-300 hover:text-blue-400 transition-all duration-200 group">
               <MdCollectionsBookmark className="text-2xl group-hover:scale-110 transition" />
               <span className="text-xs mt-1 opacity-80">List</span>
-            </button>
+            </Link>
             <button
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });

@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { SessionContext } from "../../context/SessionTokenContext";
 import fallBack from "../../assets/Not available.jpg";
 
-const MovieCard = ({ movie, seriesId,mediaType}: {  movie: MoviesI;  seriesId?: number, mediaType?: "movie" | "tv";}) => {
+const MovieCard = ({ movie, seriesId , mediaType="movie"}: {  movie: MoviesI;  seriesId?: number, mediaType?: "movie" | "tv";}) => {
   const session = useContext(SessionContext)
   return (
     <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow hover:shadow-red-600 transition-all duration-300">
@@ -14,8 +14,8 @@ const MovieCard = ({ movie, seriesId,mediaType}: {  movie: MoviesI;  seriesId?: 
       <div className="absolute top-2 left-2 z-20 flex  gap-2 opacity-0 group-hover:opacity-100 transition duration-300 my-3"
         onClick={(e) => e.stopPropagation()}
       >
-        <FavBtn movie={movie} />
-        <WatchListBtn />
+        <FavBtn movie={movie} mediaType={mediaType} />
+        <WatchListBtn movie={movie}  mediaType={mediaType}/>
       </div>
       </>}
      

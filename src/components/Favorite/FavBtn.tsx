@@ -5,7 +5,7 @@ import { addToFav } from "../../services/favoriteServices";
 import type { MoviesI } from "../../interfaces/movies";
 import { toast } from "sonner";
 
-const FavBtn = ({movie}:{movie:MoviesI}) => {
+const FavBtn = ({movie , mediaType="movie"}:{movie:MoviesI , mediaType?: "movie" | "tv"}) => {
 
   const session = useContext(SessionContext);
   const [isFav, setIsFav] = useState(false)
@@ -23,13 +23,13 @@ const FavBtn = ({movie}:{movie:MoviesI}) => {
     if (!sessionId || !accountId) return;
     let favs = JSON.parse(localStorage.getItem("favorites") || "[]")
     if(isFav){
-       await addToFav(accountId,sessionId,movie.id, "movie" ,false);
+       await addToFav(accountId , sessionId, movie.id, mediaType ,false);
        favs = favs.filter((id:number)=> id !== movie.id)
        toast("Removed 💔")
     }else {
-      await addToFav(accountId, sessionId, movie.id, "movie", true);
+      await addToFav(accountId, sessionId, movie.id, mediaType, true);
       favs.push(movie.id);
-      toast("Added ❤️");
+      toast.success("Added ❤️");
     }
     
     localStorage.setItem("favorites", JSON.stringify(favs))
