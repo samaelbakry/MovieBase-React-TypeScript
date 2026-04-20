@@ -30,15 +30,19 @@ const WatchListPage = () => {
   return (
     <section className="my-20 p-7 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-        <div>
-          <h2 className="text-3xl font-bold capitalize">
+        <div className="flex items-center gap-3">
+          <div>
+            <h2 className="text-3xl font-bold capitalize">
             your watchlist 🎬
           </h2>
           <p className="text-gray-400 mt-1">
             keep track of what you want to watch
           </p>
+          </div>
+          <span className="bg-gray-800 text-white text-sm px-5 py-1 rounded-full">
+           {watchlist?.length || 0} {type === "movies" ? "Movies" : "TV Shows"}
+          </span>
         </div>
-
         <Select
           value={type}
           onValueChange={(value) => setType(value as "movies" | "tv")}
@@ -54,7 +58,6 @@ const WatchListPage = () => {
           </SelectContent>
         </Select>
       </div>
-
       {isLoading ? (
         <LoadingScreen/>
       ) : watchlist?.length === 0 ? (
@@ -70,7 +73,8 @@ const WatchListPage = () => {
             <MovieCard
               key={item.id}
               movie={item}
-              mediaType={"movie"}
+              mediaType={type === "movies" ? "movie" : "tv"}
+              pages
             />
           ))}
         </div>

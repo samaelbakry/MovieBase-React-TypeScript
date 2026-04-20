@@ -6,20 +6,21 @@ import { useContext } from "react";
 import { SessionContext } from "../../context/SessionTokenContext";
 import fallBack from "../../assets/Not available.jpg";
 
-const MovieCard = ({ movie, seriesId , mediaType="movie"}: {  movie: MoviesI;  seriesId?: number, mediaType?: "movie" | "tv";}) => {
+const MovieCard = ({ movie , mediaType="movie", pages}: {  movie: MoviesI;  seriesId?: number, mediaType?: "movie" | "tv"; pages?: boolean }) => {
   const session = useContext(SessionContext)
   return (
     <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow hover:shadow-red-600 transition-all duration-300">
-      {session?.sessionId && <>
+      { pages ? "" :  session?.sessionId && <>
       <div className="absolute top-2 left-2 z-20 flex  gap-2 opacity-0 group-hover:opacity-100 transition duration-300 my-3"
         onClick={(e) => e.stopPropagation()}
       >
         <FavBtn movie={movie} mediaType={mediaType} />
         <WatchListBtn movie={movie}  mediaType={mediaType}/>
       </div>
-      </>}
+      </>  }
+      
      
-      <Link to={mediaType === "tv"? `/seriesDetails/${seriesId}` : `/movieDetails/${movie.id}`}
+      <Link to={`/${mediaType === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`}
       >
         <img
           src={movie.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : fallBack}

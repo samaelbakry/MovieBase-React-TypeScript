@@ -5,7 +5,9 @@ import type { MoviesI } from "../interfaces/movies";
 import { getSeries } from "../services/getSeries";
 
 const SeriesPage = () => {
-  const { data: series , isLoading } = useFetch({ queryKey: ["getSeries"], queryFn:getSeries,});
+  const { data: series , isLoading } = useFetch({ queryKey: ["series"], queryFn:getSeries,});
+  console.log(series);
+  
   return (
     <>
       <div className=" px-5 py-12 mt-20">
@@ -22,7 +24,7 @@ const SeriesPage = () => {
             {isLoading ? <LoadingScreen/> : <>
              {series?.map((item: MoviesI) => (
               <div key={item.id} className="pl-4 basis-[80%] sm:basis-1/2 lg:basis-1/3" >
-                <MovieCard movie={item} seriesId={item.id} />
+                <MovieCard movie={item} mediaType="tv" />
               </div>
             ))}
             </>}

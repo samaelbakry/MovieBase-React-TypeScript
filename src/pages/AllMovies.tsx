@@ -28,7 +28,7 @@ const AllMovies = () => {
             <>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {allMovies?.map((movie: MoviesI) => (
-                  <MovieCard key={movie.id} movie={movie} />
+                  <MovieCard key={movie.id} movie={movie} mediaType="movie" />
                 ))}
               </div>
             </>

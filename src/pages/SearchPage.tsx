@@ -9,7 +9,6 @@ const SearchPage = () => {
     query: "",
     type: "",
   };
-  console.log(results);
   
   return (
     <>

@@ -33,7 +33,7 @@ export async function getFav(accountId: number , type:"movies" | "tv", sessionId
         },
       }
     );
-    return res.data.results
+    return res.data.results || [];
   } catch (error) {
     console.log(error);
   }

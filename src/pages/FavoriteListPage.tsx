@@ -20,23 +20,30 @@ const FavoriteListPage = () => {
   const sessionId = session?.sessionId || undefined;
   const [type, setType] = useState<"movies" | "tv">("movies");
   const {data:favorite} = useFetch({
-    queryKey: ["getFavorite" , accountId],
+    queryKey: ["getFavorite" , accountId , type],
     queryFn: () => getFav(accountId!,  type , sessionId!),
     enabled: Boolean(accountId && sessionId)
   });
+  
+  console.log(favorite);
   
 
   return (
     <>
        <section className="my-20 p-7 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-        <div>
-          <h2 className="text-3xl font-bold capitalize">
+        <div className="flex items-center gap-3">
+         <div>
+           <h2 className="text-3xl font-bold capitalize">
             your favorites ❤️
           </h2>
           <p className="text-gray-400 mt-1">
             keep adding what you love
           </p>
+         </div>
+         <span className="bg-gray-800 text-white text-sm px-5 py-1 rounded-full">
+           {favorite?.length || 0} {type === "movies" ? "Movies" : "TV Shows"}
+          </span>
         </div>
 
         <Select value={type} onValueChange={(value) => setType(value as "movies" | "tv")}>
@@ -51,7 +58,6 @@ const FavoriteListPage = () => {
           </SelectContent>
         </Select>
       </div>
-      { type == "movies" && <>
       {favorite?.length === 0 ? (
         <div className="text-center text-gray-400 mt-20">
           <p className="text-lg">No favorites yet 😢</p>
@@ -60,12 +66,10 @@ const FavoriteListPage = () => {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
           {favorite?.map((movie: MoviesI) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <MovieCard key={movie.id} movie={movie} mediaType={ type === "movies" ? "movie" : "tv" } pages />
           ))}
         </div>
-      )}
-      </>}
-      
+      )}      
     </section>
   
     </>
