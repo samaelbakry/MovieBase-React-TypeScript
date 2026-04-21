@@ -32,7 +32,7 @@ const Series = () => {
                 key={item.id}
                 className="p-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
-                <MovieCard movie={item} seriesId={item.id} />
+                <MovieCard movie={item} seriesId={item.id} mediaType="tv" />
               </CarouselItem>
             ))}
           </CarouselContent>

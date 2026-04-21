@@ -1,38 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { SessionContext } from "../../context/SessionTokenContext";
 import type { MoviesI } from "../../interfaces/movies";
 import { toast } from "sonner";
 import { addToWatchList } from "../../services/watchListService";
+import { useQueryClient } from "@tanstack/react-query";
 
-const WatchListBtn = ({
-  movie,
-  mediaType = "movie",
-}: {
-  movie: MoviesI;
-  mediaType?: "movie" | "tv";
-}) => {
+const WatchListBtn = ({movie,mediaType = "movie",}: { movie: MoviesI; mediaType?: "movie" | "tv";}) => {
   const session = useContext(SessionContext);
-  const [isAdded, setIsAdded] = useState(false);
+  const [isAdded, setIsAdded] = useState(()=>{
+    const isWatched = localStorage.getItem(`watchList ${movie.id}`)
+    return isWatched ? JSON.parse(isWatched) : false
+  });
 
   const sessionId = session?.sessionId;
   const accountId = session?.accountId;
+  const movieName = mediaType === "movie" ? movie.title : movie.name
+  const queryClient = useQueryClient()
 
   async function handleWatchList() {
     if (!sessionId || !accountId) return;
-    const data = await addToWatchList(
-      accountId,
-      sessionId,
-      movie.id,
-      mediaType,
-      true,
-    );
-    toast.success("added");
-    if (data.status_message) {
-      setIsAdded((c) => !c);
-    }
+    const data = await addToWatchList(accountId,sessionId,movie.id,mediaType, !isAdded);
+    const success = data?.success
     console.log(data);
+    if (data.status_message) {
+      toast(isAdded ? `${movieName} Added from watchlist` : `${movieName} removed from watchlist`);
+      queryClient.invalidateQueries({queryKey:["watchlist" , accountId , mediaType === "movie" ? "movies" : "tv"]})
+    }
+    setIsAdded(success ? !isAdded : isAdded)
   }
+
+  useEffect(() => {
+    localStorage.setItem(`watchList ${movie.id}`, JSON.stringify(isAdded))
+  }, [movie.id ,isAdded])
 
   return (
     <>
