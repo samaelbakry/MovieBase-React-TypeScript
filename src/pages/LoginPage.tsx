@@ -1,11 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { SessionContext } from "../context/SessionTokenContext";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "../components/ui/field";
+import { Field, FieldDescription, FieldGroup, FieldLabel,} from "../components/ui/field";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { toast } from "sonner";
@@ -74,7 +69,6 @@ const LoginPage = () => {
 
   return (
     <>
-      
       <section className="min-h-screen flex items-center justify-center bg-black px-4">
         <form
           onSubmit={handleSubmit}

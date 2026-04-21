@@ -37,7 +37,7 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
           <p className="text-zinc-300 line-clamp-3 mb-6">{movie.overview}</p>
           <div className="flex gap-4">
             {isAuthorized ?<>
-             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer">
+             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer hidden lg:inline-flex items-center gap-2">
               Add to watchlist
             </button>
             </> : <Link to={"/login"}>
@@ -49,7 +49,7 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-6 right-10 z-20 flex gap-3">
+      <div className="absolute bottom-6 right-10 z-20 lg:flex gap-3 hidden">
         {movies.map((movie, index) => (
           <img key={movie.id} src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.title}

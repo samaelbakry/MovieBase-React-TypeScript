@@ -3,6 +3,7 @@ import { FaRegHandPointUp } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SessionContext } from "../../context/SessionTokenContext";
+import { CircleUser } from "lucide-react";
 
 const MiniNav = () => {
   const [show, setShow] = useState(false);
@@ -28,6 +29,13 @@ const MiniNav = () => {
       <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-black/20 backdrop-blur-xl shadow-2xl border border-white/10">
         {isAuthorized ? (
           <>
+            <Link
+              to={"/userPage"}
+              className="cursor-pointer flex flex-col items-center text-gray-300 hover:text-violet-500 transition-all duration-200 group"
+            >
+              <CircleUser className="text-2xl group-hover:scale-110 transition" />
+              <span className="text-xs mt-1 opacity-80">me</span>
+            </Link>
             <Link
               to={"/favoriteListPage"}
               className="cursor-pointer flex flex-col items-center text-gray-300 hover:text-red-500 transition-all duration-200 group"
