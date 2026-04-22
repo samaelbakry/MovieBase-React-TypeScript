@@ -17,18 +17,18 @@ const Navbar = () => {
   
   return (
     <>
-      <nav  className={`fixed top-0 left-0 right-0 z-50 wrapper mt-3 mb-20 rounded-2xl p-5 justify-between transition-all duration-300 
+      <nav  className={`fixed top-0 left-0 right-0 z-20 max-w-6xl mx-auto flex flex-col lg:flex-row items-center mt-3 mb-20 rounded-2xl p-5  gap-3 justify-between  transition-all duration-300 
       ${isScrolled ? "backdrop-blur-xl bg-black/30 transition duration-500" : "bg-transparent"}`}>
         <Logo />
-        <div className="wrapper hidden lg:block">
-          <ul className="wrapper gap-10">
-            <NavLink to={"/movies"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
+        <div className="wrapper">
+          <ul className="wrapper lg:gap-10 gap-2">
+            <NavLink to={"/movies"} className="lg:text-xl text-base  font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Movies</li>
             </NavLink>
-            <NavLink to={"/series"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
+            <NavLink to={"/series"} className="lg:text-xl text-base font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Series</li>
             </NavLink>
-            <NavLink to={"/trending"} className="text-xl font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
+            <NavLink to={"/trending"} className="lg:text-xl text-base font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Trending</li>
             </NavLink>
           </ul>

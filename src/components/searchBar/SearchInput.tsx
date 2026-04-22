@@ -34,7 +34,7 @@ const SearchInput = () => {
 
   return (
     <>
-      <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl p-3 rounded-2xl shadow-md w-fit">
+      <div className="flex lg:items-center gap-3 bg-white/5 backdrop-blur-xl p-3 rounded-2xl shadow-md max-w-lg w-full">
         <Select value={type}  onValueChange={(value) => setType(value as "movie" | "tv")} >
           <SelectTrigger className="w-45">
             <SelectValue placeholder="Theme" />
