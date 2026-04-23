@@ -4,28 +4,38 @@ import { useFetch } from "../hooks/useFetch";
 import { getSeriesDetails, getSeriesTrailer } from "../services/getSeries";
 import LoadingScreen from "../components/common/LoadingScreen";
 import fallBack from "../assets/Not available.jpg";
+import { useState } from "react";
 
 
 const SeriesDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { data: details } = useFetch({ queryKey: ["getSeriesDetails", id], queryFn: () => getSeriesDetails(id as string),});
   const { data: seriesTrailer } = useFetch({ queryKey: ["getSeriesTrailer", id], queryFn: () => getSeriesTrailer(id as string),});
-
-  const trailers =
-    seriesTrailer?.filter(
-      (video: any) =>
-        (video.type === "Trailer" || video.type === "Teaser") &&
-        video.site === "YouTube"
-    ) || [];
-
+  const [loaded, setLoaded] = useState(false);
+  
+  
+  const trailers = seriesTrailer?.filter(
+    (video: any) =>
+      (video.type === "Trailer" || video.type === "Teaser") &&
+    video.site === "YouTube"
+  ) || [];
+  
   if (!details) return <LoadingScreen/>
+  const imgScr = details.backdrop_path ? `https://image.tmdb.org/t/p/original${details.backdrop_path}` : fallBack
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <div className="relative w-full h-[70vh]">
+        {!loaded && (
+        <div className="absolute inset-0 bg-gray-300 animate-pulse z-10" />
+      )}
         <img 
-          src={details.backdrop_path? `https://image.tmdb.org/t/p/original${details.backdrop_path}` : fallBack}
-          className="w-full h-full object-cover"
+          src={imgScr}
+          loading="lazy"
+          onLoad={()=>setLoaded(true)}
+          onError={(e)=>e.currentTarget.src = fallBack}
+          className={`w-full h-full object-cover transition-opacity duration-700 
+      ${loaded ? "opacity-100" : "opacity-0"}`}
         />
 
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent" />

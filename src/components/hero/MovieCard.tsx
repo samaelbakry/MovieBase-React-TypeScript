@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import type { MoviesI } from "../../interfaces/movies";
 import WatchListBtn from "../watchList/WatchListBtn";
 import FavBtn from "../Favorite/FavBtn";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SessionContext } from "../../context/SessionTokenContext";
 import fallBack from "../../assets/Not available.jpg";
 
 const MovieCard = ({ movie , mediaType="movie", pages}: {  movie: MoviesI;  seriesId?: number, mediaType?: "movie" | "tv"; pages?: boolean }) => {
   const session = useContext(SessionContext)
+  const [loaded, setLoaded] = useState(false);
+
+
+  const imgScr = movie.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : fallBack
   return (
     <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow hover:shadow-red-600 transition-all duration-300">
       { pages ? "" :  session?.sessionId && <>
@@ -18,14 +22,20 @@ const MovieCard = ({ movie , mediaType="movie", pages}: {  movie: MoviesI;  seri
         <WatchListBtn movie={movie}  mediaType={mediaType}/>
       </div>
       </>  }
-      
-     
-      <Link to={`/${mediaType === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`}
-      >
+      {!loaded && (
+        <div className="absolute inset-0 bg-gray-300 animate-pulse z-10" />
+      )}
+
+      <Link to={`/${mediaType === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`} >
         <img
-          src={movie.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : fallBack}
+          src={imgScr}
           alt={movie.title}
-          className="w-full object-center group-hover:brightness-50 transition duration-300"
+          loading="lazy"
+          onLoad={()=>setLoaded(true)}
+          onError={(e)=>e.currentTarget.src = fallBack}
+           className={`w-full h-87.5 object-cover object-center transition duration-500 
+            ${loaded ? "opacity-100" : "opacity-0"}
+            group-hover:brightness-50`}
         />
 
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-linear-to-t from-black via-black/70 to-transparent flex flex-col justify-end p-4">
