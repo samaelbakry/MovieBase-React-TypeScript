@@ -7,7 +7,6 @@ import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { useQueryClient } from "@tanstack/react-query";
 
 const FavBtn = ({movie , mediaType="movie"}:{movie:MoviesI , mediaType?: "movie" | "tv"}) => {
-
   const session = useContext(SessionContext);
   const [isFav, setIsFav] = useState(()=>{
     const favMovie = localStorage.getItem(`favorites ${movie.id}`)
@@ -37,9 +36,8 @@ const FavBtn = ({movie , mediaType="movie"}:{movie:MoviesI , mediaType?: "movie"
   return <>
     <button
       onClick={handleFav}
-      className={`flex items-center gap-2 px-4 py-2 rounded-xl 
-      backdrop-blur-lg border transition-all duration-300 group cursor-pointer 
-      ${isFav ? "bg-red-500/20 border-red-500 text-red-500" : "bg-white/10 border-white/20 text-white hover:border-red-500"}`}>
+      className={`flex items-center gap-2 px-4 py-2 rounded-xl backdrop-blur-lg border transition-all duration-300 group cursor-pointer 
+         ${isFav ? "bg-red-500/20 border-red-500 text-red-500" : "bg-white/10 border-white/20 text-white hover:border-red-500"}`}>
          {isFav ? (
         <IoMdHeart className="text-xl scale-110" />
       ) : (

@@ -20,7 +20,7 @@ const Hero = () => {
 
   return (
     <section className="text-white">
-      <HeroCarousel movies={trendingMovies?.slice(0, 8)} />
+      <HeroCarousel movies={trendingMovies?.slice(0, 8)}/>
       {isLoading ? <LoadingScreen/> : <>
         <UpcomingMovies />
       <div className="max-w-7xl mx-auto mt-14 px-4 md:px-6">

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import type { MoviesI } from "../../interfaces/movies";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { SessionContext } from "../../context/SessionTokenContext";
 
 const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
@@ -37,9 +37,9 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
           <p className="text-zinc-300 line-clamp-3 mb-6">{movie.overview}</p>
           <div className="flex gap-4">
             {isAuthorized ?<>
-             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer hidden lg:inline-flex items-center gap-2">
-              Add to watchlist
-            </button>
+             <Link to={`/${movie.media_type === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer font-bold hidden lg:inline-flex items-center gap-2">
+              watch now !
+            </Link>
             </> : <Link to={"/login"}>
             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer">
               login Now

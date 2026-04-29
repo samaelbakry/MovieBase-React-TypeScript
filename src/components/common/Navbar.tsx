@@ -17,11 +17,11 @@ const Navbar = () => {
   
   return (
     <>
-      <nav  className={`fixed top-0 left-0 right-0 z-20 max-w-6xl mx-auto flex flex-col lg:flex-row items-center mt-3 mb-20 rounded-2xl p-5  gap-3 justify-between  transition-all duration-300 
+      <nav  className={`fixed top-0 left-0 right-0 z-20 max-w-6xl mx-auto flex flex-col items-start  lg:flex-row lg:items-center mt-3  rounded-2xl p-5  gap-3 lg:justify-between  transition-all duration-300 
       ${isScrolled ? "backdrop-blur-xl bg-black/30 transition duration-500" : "bg-transparent"}`}>
-        <Logo />
         <div className="wrapper">
           <ul className="wrapper lg:gap-10 gap-2">
+            <Logo />
             <NavLink to={"/movies"} className="lg:text-xl text-base  font-semibold hover:underline-offset-2 hover:decoration-amber-600 active_hover">
             <li>Movies</li>
             </NavLink>

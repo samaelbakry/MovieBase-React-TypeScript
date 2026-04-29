@@ -31,17 +31,17 @@ const WatchListPage = () => {
     <section className="my-20 p-7 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
         <div className="flex items-center gap-3">
-          <div>
+          <div className="mt-20 space-y-2 lg:mt-2">
             <h2 className="text-3xl font-bold capitalize">
             your watchlist 🎬
           </h2>
           <p className="text-gray-400 mt-1">
             keep track of what you want to watch
           </p>
-          </div>
           <span className="bg-gray-800 text-white text-sm px-5 py-1 rounded-full">
            {watchlist?.length || 0} {type === "movies" ? "Movies" : "TV Shows"}
           </span>
+          </div>
         </div>
         <Select
           value={type}
@@ -68,7 +68,7 @@ const WatchListPage = () => {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
           {watchlist?.map((item: MoviesI) => (
             <MovieCard
               key={item.id}

@@ -5,6 +5,8 @@ import { getSeriesDetails, getSeriesTrailer } from "../services/getSeries";
 import LoadingScreen from "../components/common/LoadingScreen";
 import fallBack from "../assets/Not available.jpg";
 import { useState } from "react";
+import FavBtn from "../components/Favorite/FavBtn";
+import WatchListBtn from "../components/watchList/WatchListBtn";
 
 
 const SeriesDetails = () => {
@@ -69,6 +71,12 @@ const SeriesDetails = () => {
             <p className="text-gray-400 leading-relaxed">
               {details.overview}
             </p>
+            {details && <>
+              <div className="flex gap-3 mt-5">
+                <FavBtn movie={details} mediaType="tv" />
+                <WatchListBtn movie={details} mediaType="tv" />
+              </div>
+              </>}
           </div>
           <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
             <p><span className="text-gray-500">First Air:</span> {details.first_air_date}</p>

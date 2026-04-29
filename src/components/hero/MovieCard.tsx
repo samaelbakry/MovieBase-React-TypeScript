@@ -25,7 +25,6 @@ const MovieCard = ({ movie , mediaType="movie", pages}: {  movie: MoviesI;  seri
       {!loaded && (
         <div className="absolute inset-0 bg-gray-300 animate-pulse z-10" />
       )}
-
       <Link to={`/${mediaType === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`} >
         <img
           src={imgScr}

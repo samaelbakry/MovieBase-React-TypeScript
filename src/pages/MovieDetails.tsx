@@ -6,6 +6,8 @@ import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCa
 import { getMovieDetails } from "../services/getMovies";
 import { useState } from "react";
 import fallBack from "../assets/Not available.jpg";
+import FavBtn from "../components/Favorite/FavBtn";
+import WatchListBtn from "../components/watchList/WatchListBtn";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,10 +50,9 @@ const MovieDetails = () => {
               className="hidden lg:block w-64 h-95 object-cover rounded-2xl"
             />
             <div className="max-w-3xl backdrop-blur-md bg-black/30 p-6 rounded-2xl border border-zinc-700/50 shadow-2xl">
-              <h1 className="text-4xl md:text-6xl font-black mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
                 {movie?.title}
               </h1>
-
               <div className="flex flex-wrap gap-3 mb-5">
                 <span className="px-4 py-1 rounded-full bg-red-500/20 text-red-400 text-sm font-medium">
                   ⭐ {movie?.vote_average?.toFixed(1)} Rating
@@ -66,6 +67,12 @@ const MovieDetails = () => {
                   </span>
                 ))}
               </div>
+              {movie && <>
+              <div className="flex gap-3 mb-5">
+                <FavBtn movie={movie} mediaType="movie" />
+                <WatchListBtn movie={movie} mediaType="movie" />
+              </div>
+              </>}
               <p className="text-zinc-300 text-base md:text-lg leading-relaxed">
                 {movie?.overview}
               </p>

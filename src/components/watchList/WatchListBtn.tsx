@@ -43,8 +43,8 @@ const WatchListBtn = ({movie,mediaType = "movie",}: { movie: MoviesI; mediaType?
       transition-all duration-300 group cursor-pointer
       ${
         isAdded
-          ? "bg-blue-600 border-blue-600 text-white"
-          : "bg-white/10 border-white/20 text-white hover:border-blue-500"
+          ? "bg-white/10 border-white/20 text-white hover:border-blue-500"
+          : "bg-blue-600 border-blue-600 text-white"
       }`}
       >
         <MdCollectionsBookmark className="text-xl group-hover:scale-110 transition-transform duration-300" />

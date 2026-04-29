@@ -1,5 +1,4 @@
 import { IoIosSearch } from "react-icons/io";
-import { getSearch } from "../../services/getSearchedMovies";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { getSearch } from "../../services/getSearchedMovies";
 
 const SearchInput = () => {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ const SearchInput = () => {
             handleSearch(searchValue);
             setSearchValue("");
           }}
-          className="bg-red-600 hover:bg-red-700 p-2 rounded-full transition cursor-pointer"
+          className="hidden md:block bg-red-600 hover:bg-red-700 p-2 rounded-full transition cursor-pointer"
         >
           <IoIosSearch className="text-white text-xl" />
         </button>
