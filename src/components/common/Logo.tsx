@@ -3,7 +3,7 @@ import { MdOutlineMovie } from "react-icons/md";
 
 const Logo = () => {
   return (
-    <Link to={""} className="flex items-center gap-1 me-10 shrink-0 overflow-hidden">
+    <Link to={""} className="flex items-center gap-1 me-5 shrink-0 overflow-hidden">
       <MdOutlineMovie className="text-red-500 text-2xl md:text-4xl hidden md:block" />
       <h1 className="text-xl md:text-4xl font-bold bg-linear-to-r from-red-500 via-rose-500 to-orange-400 bg-clip-text text-transparent whitespace-nowrap">
         Movie Base

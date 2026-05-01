@@ -13,8 +13,8 @@ const SeriesPage = () => {
       <div className=" px-5 py-12 mt-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10">
-            <h1 className="text-2xl md:text-4xl font-bold mb-5 mt-20 lg:mt-2 border-l-4 border-amber-500 pl-4">
-              All tv shows
+            <h1 className="text-2xl md:text-4xl font-bold mb-5 mt-15 lg:mt-2 border-l-4 border-amber-500 pl-4">
+              All Tv shows
             </h1>
             <p className="text-gray-400 mt-2">
               Explore the latest shows updated daily

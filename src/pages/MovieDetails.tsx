@@ -4,14 +4,18 @@ import MovieDetailsTrailer from "../components/moviesDetails/MovieDetailsTrailer
 import MovieDetailsStats from "../components/moviesDetails/MovieDetailsStats";
 import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCarousel";
 import { getMovieDetails } from "../services/getMovies";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import fallBack from "../assets/Not available.jpg";
 import FavBtn from "../components/Favorite/FavBtn";
 import WatchListBtn from "../components/watchList/WatchListBtn";
+import { SessionContext } from "../context/SessionTokenContext";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [loaded, setLoaded] = useState(false);
+  const session = useContext(SessionContext)
+
+  const isAuth = session?.sessionId && session?.accountId
 
   const { data: movie } = useFetch({
     queryKey: ["getMovieDetails", id],
@@ -67,12 +71,14 @@ const MovieDetails = () => {
                   </span>
                 ))}
               </div>
-              {movie && <>
-              <div className="flex gap-3 mb-5">
-                <FavBtn movie={movie} mediaType="movie" />
-                <WatchListBtn movie={movie} mediaType="movie" />
-              </div>
-              </>}
+              {isAuth && movie && (
+                <>
+                  <div className="flex gap-3 mb-5">
+                    <FavBtn movie={movie} mediaType="movie" />
+                    <WatchListBtn movie={movie} mediaType="movie" />
+                  </div>
+                </>
+              )}
               <p className="text-zinc-300 text-base md:text-lg leading-relaxed">
                 {movie?.overview}
               </p>

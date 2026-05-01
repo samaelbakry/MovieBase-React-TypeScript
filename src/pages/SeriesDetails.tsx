@@ -4,9 +4,10 @@ import { useFetch } from "../hooks/useFetch";
 import { getSeriesDetails, getSeriesTrailer } from "../services/getSeries";
 import LoadingScreen from "../components/common/LoadingScreen";
 import fallBack from "../assets/Not available.jpg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import FavBtn from "../components/Favorite/FavBtn";
 import WatchListBtn from "../components/watchList/WatchListBtn";
+import { SessionContext } from "../context/SessionTokenContext";
 
 
 const SeriesDetails = () => {
@@ -14,7 +15,8 @@ const SeriesDetails = () => {
   const { data: details } = useFetch({ queryKey: ["getSeriesDetails", id], queryFn: () => getSeriesDetails(id as string),});
   const { data: seriesTrailer } = useFetch({ queryKey: ["getSeriesTrailer", id], queryFn: () => getSeriesTrailer(id as string),});
   const [loaded, setLoaded] = useState(false);
-  
+  const session = useContext(SessionContext)
+  const isAuth = session?.sessionId && session?.accountId
   
   const trailers = seriesTrailer?.filter(
     (video: any) =>
@@ -71,7 +73,7 @@ const SeriesDetails = () => {
             <p className="text-gray-400 leading-relaxed">
               {details.overview}
             </p>
-            {details && <>
+            {isAuth && details && <>
               <div className="flex gap-3 mt-5">
                 <FavBtn movie={details} mediaType="tv" />
                 <WatchListBtn movie={details} mediaType="tv" />

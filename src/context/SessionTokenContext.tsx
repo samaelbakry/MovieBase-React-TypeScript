@@ -19,16 +19,17 @@ type SessionContextType = {
   createRequestToken: () => Promise<string | null>;
   validateLogin: (formData: formDataType) => Promise<string | null>;
   createSession: (request_token: string) => Promise<string | null>;
+  logout:()=>void
 };
 
-export const SessionContext =
-  createContext<SessionContextType | null>(null);
+export const SessionContext = createContext<SessionContextType | null>(null);
 
 export function SessionContextProvider({ children }: { children: React.ReactNode }) {
   const [requestToken, setRequestToken] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string | null>(()=>{
     return localStorage.getItem("session_id")
   });
+
   const [accountId, setAccountId] = useState<number | null>(null);
   const [loading , setLoading] = useState(false);
 
@@ -37,10 +38,8 @@ export function SessionContextProvider({ children }: { children: React.ReactNode
       const res = await axios.get(
         `${BASE_URL}/authentication/token/new?api_key=${API_KEY}`
       );
-
       const token = res.data.request_token;
       setRequestToken(token);
-
       return token;
     } catch (error) {
       console.log(error);
@@ -69,14 +68,27 @@ export function SessionContextProvider({ children }: { children: React.ReactNode
       );
 
       const session = res.data.session_id;
+      const now = Date.now()
       setSessionId(session);
       localStorage.setItem("session_id", session);
+      localStorage.setItem("session_createdAt", now.toString());
+
       return session;
     } catch (error) {
       console.log(error);
       return null;
     }
   }
+
+  function logout(){
+    
+    setAccountId(null)
+    setSessionId(null)
+
+    localStorage.removeItem("session_id");
+    localStorage.removeItem("session_createdAt");
+  }
+
 useEffect(() => {
   if (!sessionId) return;
   const fetchAccount = async () => {
@@ -104,15 +116,7 @@ useEffect(() => {
 
   return (
     <SessionContext.Provider
-      value={{
-        requestToken,
-        sessionId,
-        loading,
-        createRequestToken,
-        validateLogin,
-        accountId,
-        createSession
-      }}
+      value={{ requestToken, sessionId, loading, createRequestToken, validateLogin, accountId, createSession , logout}}
     >
       {children}
     </SessionContext.Provider>

@@ -53,7 +53,6 @@ const LoginPage = () => {
       console.log("Session creation failed");
       return;
     }
-    console.log("LOGIN SUCCESS:", sessionId);
     toast("Session will expire after 1 hour")
     setTimeout(() => {
       navigate("/home")

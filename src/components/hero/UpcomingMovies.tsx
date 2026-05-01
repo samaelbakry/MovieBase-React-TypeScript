@@ -1,20 +1,25 @@
 import { useFetch } from "../../hooks/useFetch";
 import type { MoviesI } from "../../interfaces/movies";
 import { getUpComingMovies } from "../../services/getMovies";
+import SessionCountDown from "../countDown/SessionCountDown";
 
 const UpcomingMovies = () => {
   const { data: upComingMovies } = useFetch({queryKey: ["getUpComing"],queryFn: getUpComingMovies});
   return (
     <>
       <div className="max-w-7xl mx-auto mt-20 px-4 md:px-6">
-        <h2 className="text-2xl md:text-3xl font-bold capitalize border-l-4 border-amber-500 pl-4 mb-8">
+        <div className="flex items-center justify-between flex-wrap gap-10">
+          <h2 className="text-2xl md:text-3xl font-bold capitalize border-l-4 border-amber-500 pl-4">
           Upcoming Releases
         </h2>
+        <SessionCountDown/>
+        </div>
+       
         <div className="grid gap-8 md:grid-cols-2">
           {upComingMovies?.slice(0, 4).map((movie: MoviesI) => (
             <div
               key={movie.id}
-              className="group relative rounded-2xl overflow-hidden h-70 shadow-xl"
+              className="group relative rounded-2xl overflow-hidden h-70 shadow-xl mt-8"
             >
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}

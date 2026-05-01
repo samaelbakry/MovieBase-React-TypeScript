@@ -22,11 +22,15 @@ const FavBtn = ({movie , mediaType="movie"}:{movie:MoviesI , mediaType?: "movie"
     if (!sessionId || !accountId) return;
     const data = await addToFav(accountId , sessionId, movie.id, mediaType , !isFav)
     const success = data?.success;
+
     if(success){
+      setIsFav(!isFav)
+
+      await queryClient.invalidateQueries({queryKey:["getFavorite" , accountId , mediaType === "movie" ? "movies" : "tv"]})
+      await queryClient.refetchQueries({queryKey:["getFavorite" , accountId , mediaType === "movie" ? "movies" : "tv"]})
+      
       toast.success(isFav ? `${movieName} removed from favorites` : `${movieName} added to favorites`);
-      queryClient.invalidateQueries({queryKey:["getFavorite" , accountId , mediaType === "movie" ? "movies" : "tv"]})
     }
-    setIsFav(success ? !isFav : isFav)
   }
 
    useEffect(() => {

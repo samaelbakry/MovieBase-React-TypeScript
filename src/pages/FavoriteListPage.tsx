@@ -19,6 +19,7 @@ const FavoriteListPage = () => {
   const accountId = session?.accountId || undefined;
   const sessionId = session?.sessionId || undefined;
   const [type, setType] = useState<"movies" | "tv">("movies");
+  
   const {data:favorite} = useFetch({
     queryKey: ["getFavorite" , accountId , type],
     queryFn: () => getFav(accountId!,  type , sessionId!),

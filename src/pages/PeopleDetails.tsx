@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { getPeopleDetails, getPeopleMovies } from "../services/getPeople";
 import LoadingScreen from "../components/common/LoadingScreen";
+import Biography from "../components/people/Biography";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -52,9 +53,7 @@ const PeopleDetails = () => {
               </span>
             </div>
 
-            <p className="text-gray-300 leading-relaxed max-w-2xl text-sm md:text-base">
-              {actor.biography || "No biography available."}
-            </p>
+           <Biography text={actor.biography}/>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div className="bg-white/5 border border-white/10 rounded-xl p-4">
