@@ -1,20 +1,40 @@
+import { useContext } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import type { MoviesI } from "../../interfaces/movies";
 import { getUpComingMovies } from "../../services/getMovies";
 import SessionCountDown from "../countDown/SessionCountDown";
+import { SessionContext } from "../../context/SessionTokenContext";
 
 const UpcomingMovies = () => {
-  const { data: upComingMovies } = useFetch({queryKey: ["getUpComing"],queryFn: getUpComingMovies});
+  const { data: upComingMovies } = useFetch({
+    queryKey: ["getUpComing"],
+    queryFn: getUpComingMovies,
+  });
+
+  const session = useContext(SessionContext);
+
+  const isLoggedIn = session?.sessionId && session?.accountId;
   return (
     <>
       <div className="max-w-7xl mx-auto mt-20 px-4 md:px-6">
         <div className="flex items-center justify-between flex-wrap gap-10">
           <h2 className="text-2xl md:text-3xl font-bold capitalize border-l-4 border-amber-500 pl-4">
-          Upcoming Releases
-        </h2>
-        <SessionCountDown/>
+            Upcoming Releases
+          </h2>
+          <div className="flex items-center gap-2">
+            {isLoggedIn && (
+              <>
+                <SessionCountDown />
+                <button
+                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl cursor-pointer font-bold"
+                  onClick={session?.logout}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+          </div>
         </div>
-       
         <div className="grid gap-8 md:grid-cols-2">
           {upComingMovies?.slice(0, 4).map((movie: MoviesI) => (
             <div
