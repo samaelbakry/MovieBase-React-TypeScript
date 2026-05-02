@@ -9,6 +9,8 @@ import fallBack from "../assets/Not available.jpg";
 import FavBtn from "../components/Favorite/FavBtn";
 import WatchListBtn from "../components/watchList/WatchListBtn";
 import { SessionContext } from "../context/SessionTokenContext";
+import Rating from "../components/rating/Rating";
+import Reviews from "../components/reviews/Reviews";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -71,11 +73,16 @@ const MovieDetails = () => {
                   </span>
                 ))}
               </div>
-              {isAuth && movie && (
+              {isAuth && movie && id && (
                 <>
-                  <div className="flex gap-3 mb-5">
-                    <FavBtn movie={movie} mediaType="movie" />
-                    <WatchListBtn movie={movie} mediaType="movie" />
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-3">
+                      <FavBtn movie={movie} mediaType="movie" />
+                      <WatchListBtn movie={movie} mediaType="movie" />
+                    </div>
+                  </div>
+                  <div className="flex">
+                      <Rating id={id} mediaType="movie"/>
                   </div>
                 </>
               )}
@@ -88,8 +95,9 @@ const MovieDetails = () => {
       </section>
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
         <MovieDetailsStats movie={movie} />
-      </section>
+      </section>        
       <MovieDetailsTrailer id={id!} />
+      <Reviews content="movie" contentId={id!} /> 
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
         <SimilarContentCarousel type="movie" id={id!} />
       </section>

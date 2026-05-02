@@ -8,6 +8,8 @@ import { useContext, useState } from "react";
 import FavBtn from "../components/Favorite/FavBtn";
 import WatchListBtn from "../components/watchList/WatchListBtn";
 import { SessionContext } from "../context/SessionTokenContext";
+import Rating from "../components/rating/Rating";
+import Reviews from "../components/reviews/Reviews";
 
 
 const SeriesDetails = () => {
@@ -73,11 +75,16 @@ const SeriesDetails = () => {
             <p className="text-gray-400 leading-relaxed">
               {details.overview}
             </p>
-            {isAuth && details && <>
-              <div className="flex gap-3 mt-5">
-                <FavBtn movie={details} mediaType="tv" />
-                <WatchListBtn movie={details} mediaType="tv" />
-              </div>
+            {isAuth && details && id &&<>
+              <div className="flex items-center justify-between my-5">
+                    <div className="flex items-center gap-3">
+                      <FavBtn movie={details} mediaType="movie" />
+                      <WatchListBtn movie={details} mediaType="movie" />
+                    </div>
+                  </div>
+                  <div className="flex">
+                      <Rating id={id} mediaType="tv"/>
+                  </div>
               </>}
           </div>
           <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
@@ -134,6 +141,9 @@ const SeriesDetails = () => {
           </div>
         </section>
       )}
+      <div className="max-w-7xl mx-auto">
+      <Reviews content="tv" contentId={id!}/>
+      </div>
       <section className="max-w-7xl mx-auto px-4 py-14">
         <SimilarContentCarousel id={id!} type="tv" />
       </section>

@@ -4,6 +4,19 @@ import type { MoviesI } from "../../interfaces/movies";
 import { getUpComingMovies } from "../../services/getMovies";
 import SessionCountDown from "../countDown/SessionCountDown";
 import { SessionContext } from "../../context/SessionTokenContext";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
+import { Button } from "../ui/button";
+import { Trash2Icon } from "lucide-react";
 
 const UpcomingMovies = () => {
   const { data: upComingMovies } = useFetch({
@@ -25,12 +38,30 @@ const UpcomingMovies = () => {
             {isLoggedIn && (
               <>
                 <SessionCountDown />
-                <button
-                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl cursor-pointer font-bold"
-                  onClick={session?.logout}
-                >
-                  Logout
-                </button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="destructive" className="bg-red-600 hover:bg-red-700 text-white px-7 py-5 rounded-full cursor-pointer font-bold">Logout</Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent size="sm" className="bg-black/40 backdrop-blur-2xl border border-zinc-700 text-gray-200">
+                    <AlertDialogHeader >
+                      <span className= "size-10 rounded-full bg-red-600 flex flex-col items-center py-2 px-1 shadow-red-300">
+                        <Trash2Icon className="text-red-100" />
+                      </span>
+                      <AlertDialogTitle className="text-red-600">Logout</AlertDialogTitle>
+                      <AlertDialogDescription className="text-gray-300">
+                        Are you sure you want to logout?
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter className="bg-black/30" >
+                      <AlertDialogCancel size="sm" variant="outline" className="text-black/80 bg-white/80 hover:text-black hover:bg-white cursor-pointer">
+                        Cancel
+                      </AlertDialogCancel>
+                      <AlertDialogAction size="sm" variant="destructive" className="cursor-pointer hover:text-red-600" onClick={()=>session?.logout()}>
+                       Logout
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </>
             )}
           </div>
