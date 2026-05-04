@@ -53,7 +53,7 @@ const Hero = () => {
                 key={movie.id}
                 className="p-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
-                <MovieCard movie={movie} />
+                <MovieCard movie={movie}/>
               </CarouselItem>
             ))}
           </CarouselContent>

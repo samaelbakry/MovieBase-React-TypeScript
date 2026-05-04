@@ -15,7 +15,7 @@ const SearchPage = () => {
       <div className=" px-5 py-12 mt-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-5">
-            <h1 className="text-2xl md:text-4xl font-bold mb-5 mt-20 border-l-4 border-amber-500 pl-4">
+            <h1 className="text-2xl md:text-4xl font-bold mb-5 mt-10 border-l-4 border-amber-500 pl-4">
               Results for: {query} ({type})
             </h1>
           </div>

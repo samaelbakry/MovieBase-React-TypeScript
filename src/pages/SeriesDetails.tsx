@@ -78,8 +78,8 @@ const SeriesDetails = () => {
             {isAuth && details && id &&<>
               <div className="flex items-center justify-between my-5">
                     <div className="flex items-center gap-3">
-                      <FavBtn movie={details} mediaType="movie" />
-                      <WatchListBtn movie={details} mediaType="movie" />
+                      <FavBtn movie={details} mediaType="tv" />
+                      <WatchListBtn movie={details} mediaType="tv" />
                     </div>
                   </div>
                   <div className="flex">
