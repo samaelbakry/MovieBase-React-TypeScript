@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import type { MoviesI } from "../../interfaces/movies";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { SessionContext } from "../../context/SessionTokenContext";
 
 const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
-  const session = useContext(SessionContext)
-  const isAuthorized = session?.accountId && session.sessionId;
+  const session = useContext(SessionContext);
+  const isAuthorized = session?.accountId && session?.sessionId;
+
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
 
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % movies.length);
-    }, 4000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [movies]);
@@ -23,44 +24,76 @@ const HeroCarousel = ({ movies }: { movies: MoviesI[] }) => {
   const movie = movies[current];
 
   return (
-    <section className="relative h-[85vh] w-full overflow-hidden ">
+    <section className="relative h-[90vh] w-full overflow-hidden bg-black">
       <img
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         alt={movie.title}
-        className="absolute inset-0 w-full h-full object-cover"
-        />
-      <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/40 to-transparent" />
-      <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
-      <div className="relative z-10 h-full flex items-end px-10 pb-16">
-        <div className="max-w-xl">
-          <h1 className="text-5xl font-bold text-white mb-4">{movie.title}</h1>
-          <p className="text-zinc-300 line-clamp-3 mb-6">{movie.overview}</p>
-          <div className="flex gap-4">
-            {isAuthorized ?<>
-             <Link to={`/${movie.media_type === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg cursor-pointer font-bold hidden lg:inline-flex items-center gap-2">
-              watch now !
-            </Link>
-            </> : <Link to={"/login"}>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer">
-              login Now
-            </button>
-           </Link>
-           }
+        className="absolute inset-0 h-full w-full object-cover scale-110 transition-all duration-700"
+      />
+
+      <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/60" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-24">
+        <div className="max-w-xl space-y-5">
+          <span className="text-xs tracking-widest text-amber-400 uppercase">
+            Featured Movie
+          </span>
+
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+            {movie.title}
+          </h1>
+
+          <p className="text-gray-300 line-clamp-3">{movie.overview}</p>
+
+          <div className="flex gap-4 pt-2">
+            {isAuthorized ? (
+              <Link
+                to={`/${
+                  movie.media_type === "tv" ? "seriesDetails" : "movieDetails"
+                }/${movie.id}`}
+                className="
+                  bg-red-600 hover:bg-red-700
+                  text-white font-semibold
+                  px-6 py-3 rounded-lg
+                  transition
+                  shadow-lg shadow-red-600/20
+                  hover:scale-105
+                "
+              >
+                ▶ Watch Now
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="
+                  bg-white/10 hover:bg-white/20
+                  text-white font-semibold
+                  px-6 py-3 rounded-lg
+                  border border-white/20
+                  backdrop-blur-md
+                  transition
+                "
+              >
+                Login to Continue
+              </Link>
+            )}
+          </div>
+
+          <div className="flex gap-2 pt-4">
+            {movies.slice(0, 5).map((m, index) => (
+              <button
+                key={m.id}
+                onClick={() => setCurrent(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  current === index
+                    ? "w-8 bg-red-500"
+                    : "w-2 bg-white/30 hover:bg-white/50"
+                }`}
+              />
+            ))}
           </div>
         </div>
-      </div>
-      <div className="absolute bottom-6 right-10 z-20 lg:flex gap-3 hidden">
-        {movies.map((movie, index) => (
-          <img key={movie.id} src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-            alt={movie.title}
-            onClick={() => setCurrent(index)}
-            className={`w-24 h-32 object-cover rounded-lg cursor-pointer transition-all duration-300 ${
-              current === index
-                ? "ring-2 ring-red-500 scale-105"
-                : "opacity-60 hover:opacity-100"
-            }`}
-          />
-        ))}
       </div>
     </section>
   );

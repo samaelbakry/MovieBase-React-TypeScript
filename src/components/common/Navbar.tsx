@@ -20,10 +20,10 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center mt-4 rounded-2xl p-4 lg:p-5 gap-3 lg:justify-between transition-all duration-300
+        className={`fixed top-0 left-0 right-0 z-50 max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center my-6 px-4 lg:p-3 rounded-2xl gap-3 lg:justify-between transition-all duration-300
        ${isScrolled ? "backdrop-blur-xl bg-black/30" : "bg-transparent"}`}
       >
-        <div className="flex items-center justify-between w-full px-3">
+        <div className="flex items-center justify-between w-full">
           <Logo />
           <button
             className="lg:hidden text-white text-3xl"
@@ -33,7 +33,7 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className={`${open ? "flex" : "hidden"} lg:flex flex-col lg:flex-row items-start lg:items-center backdrop-blur-2xl bg-black/20 rounded-2xl py-4 px-5 gap-2 lg:gap-5 w-full lg:w-auto`}
+          className={`${open ? "flex" : "hidden"} lg:flex flex-col lg:flex-row items-start lg:items-center rounded-2xl py-4 px-5 gap-2 lg:gap-5 w-full lg:w-auto`}
         >
           <NavLink
             to="/movies"

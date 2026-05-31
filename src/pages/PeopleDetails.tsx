@@ -21,7 +21,7 @@ const PeopleDetails = () => {
   if (isLoading) return <LoadingScreen />;
 
   return (
-    <div className="relative min-h-screen text-white overflow-hidden my-20">
+    <div className="relative min-h-screen text-white overflow-hidden py-20">
       <div className="absolute inset-0">
         <img
           src={`${IMAGE_BASE_URL}${actor.profile_path}`}

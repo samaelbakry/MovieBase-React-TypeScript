@@ -3,12 +3,10 @@ const API_KEY = "3354828a786f75544afdadc9e18a0677"
 const BASE_URL = "https://api.themoviedb.org/3"
 
 
-export async function getAllMovies(){
+export async function getAllMovies(page:number){
     try {
-        const data = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}`)
-        
-         return data.data.results
-        
+        const data = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`)
+        return data.data
     } catch (error) {
         console.log(error);
     }
@@ -17,8 +15,7 @@ export async function getAllMovies(){
 export async function getTrendingMovies(){
     try {
         const data = await axios.get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
-        
-         return data.data.results
+        return data.data.results
         
     } catch (error) {
         console.log(error);

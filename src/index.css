@@ -23,6 +23,17 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: red;
+  border-radius: 15px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(81, 81, 81);
+}
+
 
 @theme inline {
     --font-heading: var(--font-sans);
@@ -138,12 +149,14 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
+    @apply border-border;
+  }
+
   html {
-    @apply font-sans;
-    }
+    @apply font-sans scroll-smooth;
+  }
+
+  body {
+    @apply bg-black text-white antialiased;
+  }
 }

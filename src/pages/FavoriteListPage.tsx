@@ -31,48 +31,85 @@ const FavoriteListPage = () => {
 
   return (
     <>
-       <section className="my-20 p-7 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-        <div className="flex items-center gap-3">
-         <div className="mt-20 space-y-2 lg:mt-2">
-           <h2 className="text-3xl font-bold capitalize">
-            your favorites ❤️
-          </h2>
-          <p className="text-gray-400 mt-1">
-            keep adding what you love
-          </p>
-            <span className="bg-gray-800 text-white text-sm px-5 py-1 rounded-full">
-           {favorite?.length || 0} {type === "movies" ? "Movies" : "TV Shows"}
-          </span>
-         </div>
-       
-        </div>
+       <section className="my-20 max-w-7xl mx-auto px-4 md:px-6 py-10">
 
-        <Select value={type} onValueChange={(value) => setType(value as "movies" | "tv")}>
-          <SelectTrigger className="w-45 text-white">
-            <SelectValue placeholder="Theme" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="movies">🎬 Movies</SelectItem>
-              <SelectItem value="tv">📺 TV</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+
+    <div className="space-y-2">
+
+      <h2 className="text-3xl md:text-4xl font-bold border-l-4 border-amber-500 pl-4 capitalize">
+        Your Favorites
+      </h2>
+
+      <p className="text-gray-400">
+        Keep track of everything you’ve saved
+      </p>
+
+      <span className="inline-flex items-center bg-white/10 border border-white/10 backdrop-blur-md text-sm px-4 py-1 rounded-full">
+        {favorite?.length || 0}{" "}
+        {type === "movies" ? "Movies" : "TV Shows"}
+      </span>
+
+    </div>
+
+    <div className="bg-white/5 border border-white/10 backdrop-blur-md p-2 rounded-2xl">
+
+      <Select
+        value={type}
+        onValueChange={(value) => setType(value as "movies" | "tv")}
+      >
+        <SelectTrigger className="w-40 bg-transparent text-white border-none focus:ring-0">
+          <SelectValue />
+        </SelectTrigger>
+
+        <SelectContent className="bg-zinc-900 text-white border-white/10">
+          <SelectGroup>
+            <SelectItem value="movies">Movies</SelectItem>
+            <SelectItem value="tv">TV Shows</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
+    </div>
+
+  </div>
+
+  {favorite?.length === 0 ? (
+    <div className="flex flex-col items-center justify-center text-center mt-24 space-y-3">
+
+      <p className="text-lg text-gray-300">
+        No favorites yet
+      </p>
+
+      <p className="text-sm text-gray-500">
+        Start adding movies or TV shows you like
+      </p>
+
+    </div>
+  ) : (
+    <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-4 md:p-6">
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+
+        {favorite?.map((movie: MoviesI) => (
+          <div
+            key={movie.id}
+            className="transition-transform duration-300 hover:scale-[1.03]"
+          >
+            <MovieCard
+              movie={movie}
+              mediaType={type === "movies" ? "movie" : "tv"}
+              pages
+            />
+          </div>
+        ))}
+
       </div>
-      {favorite?.length === 0 ? (
-        <div className="text-center text-gray-400 mt-20">
-          <p className="text-lg">No favorites yet 😢</p>
-          <p className="text-sm mt-2">Start adding some movies or shows</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
-          {favorite?.map((movie: MoviesI) => (
-            <MovieCard key={movie.id} movie={movie} mediaType={ type === "movies" ? "movie" : "tv" } pages />
-          ))}
-        </div>
-      )}      
-    </section>
+
+    </div>
+  )}
+
+</section>
   
     </>
   );
