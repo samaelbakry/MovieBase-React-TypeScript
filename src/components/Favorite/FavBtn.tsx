@@ -15,7 +15,7 @@ const FavBtn = ({movie , mediaType="movie"}:{movie:MoviesI , mediaType?: "movie"
 
   const sessionId = session?.sessionId;
   const accountId = session?.accountId;
-  const movieName = mediaType === "movie" ? movie.title : movie.name
+  const movieName = mediaType === "movie" ? movie.title : ""
   const queryClient = useQueryClient()
 
   async function handleFav() {

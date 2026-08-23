@@ -60,8 +60,6 @@ const SearchInput = () => {
         transition
       ">
 
-        <IoIosSearch className="text-gray-400 text-xl" />
-
         <input
           type="text"
           ref={searchInput}

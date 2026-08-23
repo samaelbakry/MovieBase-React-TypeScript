@@ -16,7 +16,7 @@ const WatchListBtn = ({movie , mediaType = "movie",}: { movie: MoviesI; mediaTyp
   const sessionId = session?.sessionId;
   const accountId = session?.accountId;
   const type= mediaType === "movie" ? "movies" : "tv"
-  const movieName = mediaType === "movie" ? movie.title : movie.name
+  const movieName = mediaType === "movie" ? movie.title : ""
   const queryClient = useQueryClient()
 
   async function handleWatchList() {

@@ -1,15 +1,10 @@
-import Autoplay from "embla-carousel-autoplay";
 import { useFetch } from "../../hooks/useFetch";
 import type { MoviesI } from "../../interfaces/movies";
-import {
-  getTopRatedMovies,
-  getTrendingMovies,
-} from "../../services/getMovies";
+import { getTopRatedMovies, getTrendingMovies } from "../../services/getMovies";
 import LoadingScreen from "../common/LoadingScreen";
 import HeroCarousel from "../hero/HeroCarousel";
 import MovieCard from "../hero/MovieCard";
 import UpcomingMovies from "../hero/UpcomingMovies";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 const Hero = () => {
   const { data: trendingMovies, isLoading } = useFetch({
@@ -27,90 +22,65 @@ const Hero = () => {
   }
 
   return (
-    <section className="text-white bg-linear-to-b from-black via-zinc-950 to-black">
-
+    <section className="min-h-screen text-zinc-100 bg-zinc-950 font-sans selection:bg-amber-500 selection:text-zinc-950">
       <div className="relative">
         <HeroCarousel movies={trendingMovies?.slice(0, 8)} />
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black via-transparent to-black/40" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-zinc-950 to-transparent" />
       </div>
 
-      <div className="relative z-10 space-y-24 pb-24">
-        <div className="max-w-8xl mx-auto px-4 md:px-6">
+      <div className="relative z-10 space-y-20 pt-4 pb-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <UpcomingMovies />
         </div>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 space-y-8">
 
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl md:text-3xl font-bold border-l-4 border-amber-500 pl-4">
-              🔥 Trending Movies
-            </h2>
-            <span className="text-xs text-gray-400 hidden md:block">
-              Updated just now
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="flex items-end justify-between border-b border-zinc-800/60 pb-3">
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-7 rounded-full bg-amber-500" />
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                <span>🔥</span> Trending Movies
+              </h2>
+            </div>
+            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider hidden sm:block">
+              Updated hourly
             </span>
           </div>
-          <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-4 md:p-6">
-            <Carousel
-              plugins={[Autoplay({ delay: 3500 })]}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {trendingMovies?.map((movie: MoviesI) => (
-                  <CarouselItem
-                    key={movie.id}
-                    className="
-                      p-4
-                      basis-[80%]
-                      sm:basis-1/2
-                      lg:basis-1/3
-                      xl:basis-1/4
-                    "
-                  >
-                    <div className="transition-transform duration-300 hover:scale-[1.03]">
-                      <MovieCard movie={movie} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+            {trendingMovies?.slice(0, 10).map((movie: MoviesI) => (
+              <div
+                key={movie.id}
+                className="h-full transition-all duration-300 hover:-translate-y-1.5"
+              >
+                <MovieCard movie={movie} />
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 space-y-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="flex items-end justify-between border-b border-zinc-800/60 pb-3">
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-7 rounded-full bg-amber-500" />
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                <span>⭐</span> Top Rated Movies
+              </h2>
+            </div>
 
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl md:text-3xl font-bold border-l-4 border-amber-500 pl-4">
-              ⭐ Top Rated Movies
-            </h2>
-
-            <span className="text-xs text-gray-400 hidden md:block">
-              Best rated by users
+            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider hidden sm:block">
+              All-time classics
             </span>
           </div>
 
-          <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-4 md:p-6">
-            <Carousel
-              plugins={[Autoplay({ delay: 4000 })]}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {topRatedMovies?.map((movie: MoviesI) => (
-                  <CarouselItem
-                    key={movie.id}
-                    className="
-                      p-4
-                      basis-[80%]
-                      sm:basis-1/2
-                      lg:basis-1/3
-                      xl:basis-1/4
-                    "
-                  >
-                    <div className="transition-transform duration-300 hover:scale-[1.03]">
-                      <MovieCard movie={movie} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+            {topRatedMovies?.slice(0, 10).map((movie: MoviesI) => (
+              <div
+                key={movie.id}
+                className="h-full transition-all duration-300 hover:-translate-y-1.5"
+              >
+                <MovieCard movie={movie} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

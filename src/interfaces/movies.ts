@@ -3,7 +3,7 @@ export interface MoviesI {
   backdrop_path: string | null;
   genre_ids: number[];
   id: number;
-  media_type: "movie";
+  media_type: "movie" | "tv";
   original_language: string;
   original_title: string;
   overview: string;

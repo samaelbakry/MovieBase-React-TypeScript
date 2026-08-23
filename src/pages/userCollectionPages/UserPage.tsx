@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { SessionContext } from "../context/SessionTokenContext";
-import { getUserData } from "../services/userServices";
+import { SessionContext } from "../../context/SessionTokenContext";
+import { getUserData } from "../../services/userServices";
 
 type AccountType = {
   avatar: {
@@ -17,7 +17,10 @@ const UserPage = () => {
   const session = useContext(SessionContext);
   const [user, setUser] = useState<AccountType | null>(null);
 
-  async function fetchUserData() {
+
+
+  useEffect(() => {
+      async function fetchUserData() {
     if (!session?.accountId || !session?.sessionId) return;
 
     const data = await getUserData(
@@ -27,10 +30,8 @@ const UserPage = () => {
 
     setUser(data);
   }
-
-  useEffect(() => {
     fetchUserData();
-  }, [session?.accountId]);
+  }, [session?.accountId , session?.sessionId]);
 
   const avatarUrl = user?.avatar.tmdb.avatar_path
     ? `https://image.tmdb.org/t/p/w300${user.avatar.tmdb.avatar_path}`

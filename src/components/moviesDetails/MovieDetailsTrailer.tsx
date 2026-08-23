@@ -5,7 +5,8 @@ const MovieDetailsTrailer = ({ id }: { id: string }) => {
   const { data: movieTrailer } = useFetch({ queryKey: ["getMovieTrailer", id], queryFn: () => getMovieTrailer(id),});
 
   const trailer = movieTrailer?.find(
-    (video) => video.type === "Trailer" && video.site === "YouTube",
+    (video: { type: string; site: string; key: string }) =>
+      video.type === "Trailer" && video.site === "YouTube",
   );
   return (
     <>
