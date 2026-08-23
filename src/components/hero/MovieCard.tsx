@@ -11,7 +11,8 @@ const MovieCard = ({ movie , mediaType="movie", pages}: {  movie: MoviesI;  seri
   const [loaded, setLoaded] = useState(false);
 
 
-  const imgScr = movie.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : fallBack
+  const imgScr = movie?.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : fallBack
+
   return (
     <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow hover:shadow-red-600 transition-all duration-300">
       { pages ? "" :  session?.sessionId && <>
@@ -28,7 +29,7 @@ const MovieCard = ({ movie , mediaType="movie", pages}: {  movie: MoviesI;  seri
       <Link to={`/${mediaType === "tv" ? "seriesDetails" : "movieDetails"}/${movie.id}`} >
         <img
           src={imgScr}
-          alt={movie.title}
+          alt={movie?.title}
           loading="lazy"
           onLoad={()=>setLoaded(true)}
           onError={(e)=>e.currentTarget.src = fallBack}

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import LoadingScreen from "../components/common/LoadingScreen";
-import MovieCard from "../components/hero/MovieCard";
-import { useFetch } from "../hooks/useFetch";
-import type { MoviesI } from "../interfaces/movies";
-import { getSeries } from "../services/getSeries";
+import LoadingScreen from "../../components/common/LoadingScreen";
+import MovieCard from "../../components/hero/MovieCard";
+import { useFetch } from "../../hooks/useFetch";
+import type { MoviesI } from "../../interfaces/movies";
+import { getSeries } from "../../services/getSeries";
 import {
   Pagination,
   PaginationContent,
@@ -12,7 +12,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "../components/ui/pagination.tsx";
+} from "../../components/ui/pagination.tsx";
 
 const SeriesPage = () => {
   const [page, setPage] = useState<number>(1);

@@ -1,16 +1,17 @@
 import { useParams } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
-import MovieDetailsTrailer from "../components/moviesDetails/MovieDetailsTrailer";
-import MovieDetailsStats from "../components/moviesDetails/MovieDetailsStats";
-import SimilarContentCarousel from "../components/moviesDetails/SimilarContentCarousel";
-import { getMovieDetails } from "../services/getMovies";
+
 import { useContext, useState } from "react";
-import fallBack from "../assets/Not available.jpg";
-import FavBtn from "../components/Favorite/FavBtn";
-import WatchListBtn from "../components/watchList/WatchListBtn";
-import { SessionContext } from "../context/SessionTokenContext";
-import Rating from "../components/rating/Rating";
-import Reviews from "../components/reviews/Reviews";
+import fallBack from "../../assets/Not available.jpg";
+import Reviews from "../../components/reviews/Reviews";
+import Rating from "../../components/rating/Rating";
+import { SessionContext } from "../../context/SessionTokenContext";
+import { useFetch } from "../../hooks/useFetch";
+import { getMovieDetails } from "../../services/getMovies";
+import FavBtn from "../../components/Favorite/FavBtn";
+import WatchListBtn from "../../components/watchList/WatchListBtn";
+import MovieDetailsStats from "../../components/moviesDetails/MovieDetailsStats";
+import MovieDetailsTrailer from "../../components/moviesDetails/MovieDetailsTrailer";
+import SimilarContentCarousel from "../../components/moviesDetails/SimilarContentCarousel";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();

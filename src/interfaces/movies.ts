@@ -1,18 +1,18 @@
 export interface MoviesI {
-  adult: boolean
-  backdrop_path: string
-  id: number
-  title: string
-  name?:string
-  original_title: string
-  overview: string
-  poster_path: string
-  media_type: string
-  original_language: string
-  genre_ids: number[]
-  popularity: number
-  release_date: string
-  video: boolean
-  vote_average: number
-  vote_count: number
+  adult: boolean;
+  backdrop_path: string | null;
+  genre_ids: number[];
+  id: number;
+  media_type: "movie";
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  release_date: string;
+  softcore: boolean;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }

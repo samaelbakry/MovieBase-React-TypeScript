@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import MovieCard from "../components/hero/MovieCard";
+import MovieCard from "../../components/hero/MovieCard";
 import {
   Select,
   SelectContent,
@@ -7,11 +7,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
-import { SessionContext } from "../context/SessionTokenContext";
-import { useFetch } from "../hooks/useFetch";
-import type { MoviesI } from "../interfaces/movies";
-import { getWatchList } from "../services/watchListService";
+} from "../../components/ui/select";
+import { getWatchList } from "../../services/watchListService";
+import { useFetch } from "../../hooks/useFetch";
+import { SessionContext } from "../../context/SessionTokenContext";
+import type { MoviesI } from "../../interfaces/movies";
+
 
 const WatchListPage = () => {
   const session = useContext(SessionContext);
@@ -60,13 +61,11 @@ const WatchListPage = () => {
         </div>
       </div>
 
-      {/* LOADING */}
       {isLoading ? (
         <div className="flex justify-center items-center py-24 text-gray-400">
           Loading...
         </div>
       ) : watchlist?.length === 0 ? (
-        /* EMPTY STATE */
         <div className="flex flex-col items-center justify-center text-center mt-24 space-y-3">
           <p className="text-lg text-gray-300">No items in your watchlist</p>
 
@@ -75,7 +74,6 @@ const WatchListPage = () => {
           </p>
         </div>
       ) : (
-        /* GRID */
         <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-4 md:p-6">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
             {watchlist?.map((item: MoviesI) => (

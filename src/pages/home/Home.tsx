@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
-import LoadingScreen from "../components/common/LoadingScreen";
+import LoadingScreen from "../../components/common/LoadingScreen";
 
-const Hero = lazy(() => import("../components/sections/Hero"));
-const People = lazy(() => import("../components/sections/People"));
-const Series = lazy(() => import("../components/sections/Series"));
+const Hero = lazy(() => import("../../components/sections/Hero"));
+const People = lazy(() => import("../../components/sections/People"));
+const Series = lazy(() => import("../../components/sections/Series"));
 
 const Home = () => {
   return (

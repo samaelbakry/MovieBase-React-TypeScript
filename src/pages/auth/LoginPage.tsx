@@ -1,8 +1,8 @@
 import { useContext, useRef, useState } from "react";
-import { SessionContext } from "../context/SessionTokenContext";
-import { Field, FieldDescription, FieldGroup, FieldLabel,} from "../components/ui/field";
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
+import { SessionContext } from "../../context/SessionTokenContext";
+import { Field, FieldDescription, FieldGroup, FieldLabel,} from "../../components/ui/field";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 

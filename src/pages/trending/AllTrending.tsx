@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LoadingScreen from "../components/common/LoadingScreen";
-import MovieCard from "../components/hero/MovieCard";
-import { useFetch } from "../hooks/useFetch";
+import LoadingScreen from "../../components/common/LoadingScreen";
+import MovieCard from "../../components/hero/MovieCard";
+import { useFetch } from "../../hooks/useFetch";
 
 import {
   Pagination,
@@ -11,8 +11,9 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "../components/ui/pagination";
-import { getAllTrending } from "../services/getAllTrending";
+} from "../../components/ui/pagination";
+import { getAllTrending } from "../../services/getAllTrending";
+import type { MoviesI } from "../../interfaces/movies";
 
 const AllTrending = () => {
   const [page, setPage] = useState(1);
@@ -42,13 +43,15 @@ const AllTrending = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {trendingItems.map((item: any) => (
+              {trendingItems.map(
+                (item: MoviesI & {media_type: "movie" | "tv" }) => (
                 <MovieCard
-                  key={item.id}
+                  key={item?.id}
                   movie={item}
-                  mediaType={item.media_type}
+                  mediaType={item?.media_type}
                 />
-              ))}
+                ),
+              )}
             </div>
 
             <div className="my-10">

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import type { MoviesI } from "../interfaces/movies";
-import MovieCard from "../components/hero/MovieCard";
+import type { MoviesI } from "../../interfaces/movies";
+import MovieCard from "../../components/hero/MovieCard";
 
 const SearchPage = () => {
   const location = useLocation();

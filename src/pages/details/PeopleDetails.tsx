@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
-import { getPeopleDetails, getPeopleMovies } from "../services/getPeople";
-import LoadingScreen from "../components/common/LoadingScreen";
-import Biography from "../components/people/Biography";
+import { getPeopleDetails, getPeopleMovies } from "../../services/getPeople";
+import { useFetch } from "../../hooks/useFetch";
+import LoadingScreen from "../../components/common/LoadingScreen";
+import Biography from "../../components/people/Biography";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
